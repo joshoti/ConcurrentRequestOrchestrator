@@ -10,7 +10,9 @@ export interface SimulationConfigState {
   // Producers
   jobSpeed: number;
   jobCount: number;
-  fixedArrival: boolean; 
+  fixedArrival: boolean;
+  minArrivalTime: number;
+  maxArrivalTime: number;
   maxQueue: number;
   minPapers: number;
   maxPapers: number;

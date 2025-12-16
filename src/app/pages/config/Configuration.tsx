@@ -71,18 +71,31 @@ const SimulationConfig: React.FC = () => {
     }
 
     // Validation Logic
-    // We cast to number for validation checks because RANGES only apply to numeric fields
-    const range = RANGES[field];
-    if (range && typeof val === 'number') {
-      const { min, max } = range;
-      if (val < min || (max !== -1 && val > max)) {
-        setErrors(prev => ({ ...prev, [field]: `Must be between ${min} and ${max}` }));
+    // Special validation for maxQueue: must be -1 or >= 5
+    if (field === 'maxQueue' && typeof val === 'number') {
+      if (val !== -1 && val < 5) {
+        setErrors(prev => ({ ...prev, [field]: 'Must be -1 or >= 5' }));
       } else {
         setErrors(prev => {
           const newErrors = { ...prev };
           delete newErrors[field];
           return newErrors;
         });
+      }
+    } else {
+      // Standard range validation for other numeric fields
+      const range = RANGES[field];
+      if (range && typeof val === 'number') {
+        const { min, max } = range;
+        if (val < min || (max !== -1 && val > max)) {
+          setErrors(prev => ({ ...prev, [field]: `Must be between ${min} and ${max}` }));
+        } else {
+          setErrors(prev => {
+            const newErrors = { ...prev };
+            delete newErrors[field];
+            return newErrors;
+          });
+        }
       }
     }
   };
@@ -201,7 +214,7 @@ const SimulationConfig: React.FC = () => {
               imageAlt="Producers Laptops"
               section="producers"
               hasUndo={!!undoCache.producers}
-              onSectionReset={() => toggleSectionReset('producers', ['jobSpeed', 'jobCount', 'minPapers', 'maxPapers'])}
+              onSectionReset={() => toggleSectionReset('producers', ['fixedArrival', 'jobSpeed', 'minArrivalTime', 'maxArrivalTime', 'jobCount', 'minPapers', 'maxPapers', 'maxQueue'])}
               onSkipAll={() => skipTo(bottomRef)}
             />
 
