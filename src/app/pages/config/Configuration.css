@@ -1,0 +1,133 @@
+/* Main Container */
+.config-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Scrollable Area */
+.config-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 8rem;
+}
+
+/* Section Container */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-bottom: 6rem;
+  position: relative;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    flex-direction: row;
+  }
+}
+
+/* Section Sidebar */
+.section-sidebar {
+  width: 100%;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .section-sidebar {
+    width: 40%;
+  }
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 2.5rem;
+}
+
+.section-image {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+}
+
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Section Inputs */
+.section-inputs {
+  width: 100%;
+  padding-left: 20px;
+}
+
+@media (min-width: 768px) {
+  .section-inputs {
+    width: 60%;
+  }
+}
+
+/* Input Group */
+.input-group {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.reset-button {
+  margin-top: auto;
+  margin-bottom: 9px;
+  margin-left: 1rem;
+  white-space: nowrap;
+  overflow: unset !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+  height: 6rem;
+  background-color: white;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 50;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.begin-button {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.begin-button:hover:not(:disabled) {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.begin-button:disabled {
+  background-color: #adb5bd !important;
+  cursor: not-allowed;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .reset-button {
+    margin-top: 0.5rem;
+    margin-left: 0;
+    align-self: flex-start;
+  }
+  
+  .bottom-bar {
+    padding: 0 1rem;
+  }
+}

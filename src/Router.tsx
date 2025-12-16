@@ -8,9 +8,8 @@ export function Router() {
     <BrowserRouter>
       {/* <ScrollToTop /> */}
       <Routes>
-        <Route path="/" element={<Homepage />}>
-          <Route path="configuration" element={<SimulationConfig />} />
-        </Route>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/configuration" element={<SimulationConfig />} />
         <Route path="*" element={<Homepage />} />
       </Routes>
     </BrowserRouter>
