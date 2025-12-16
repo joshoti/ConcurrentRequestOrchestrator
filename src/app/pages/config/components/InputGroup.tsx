@@ -52,7 +52,7 @@ export const InputGroup: React.FC<InputGroupProps> = ({
         onClick={onReset}
         variant={hasUndo ? "light" : "subtle"}
         color={hasUndo ? "blue" : "red"}
-        size="xs"
+        size="sm"
         className="reset-button"
         leftSection={hasUndo ? <IconArrowBack size={14}/> : null}
       >

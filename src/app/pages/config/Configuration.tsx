@@ -4,6 +4,7 @@ import { Container, Title, Box, Loader, Center, Stack, Text } from '@mantine/cor
 import './Configuration.css';
 import ProducerImg from '../../assets/images/producer-picture.png';
 import ConsumerImg from '../../assets/images/consumer-picture.jpg';
+import InterfaceImg from '../../assets/images/interface-picture.png';
 
 // Import types and constants
 import { 
@@ -19,6 +20,7 @@ import { DEFAULTS, RANGES } from './constants';
 import { SectionHeader } from './components/SectionHeader';
 import { ConsumersSection } from './components/ConsumersSection';
 import { ProducersSection } from './components/ProducersSection';
+import { InterfaceSection } from './components/InterfaceSection';
 import { ConfigBottomBar } from './components/ConfigBottomBar';
 
 const SimulationConfig: React.FC = () => {
@@ -30,13 +32,15 @@ const SimulationConfig: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [undoCache, setUndoCache] = useState<UndoCache>({ 
     consumers: null, 
-    producers: null 
+    producers: null,
+    interface: null 
   });
   const [fieldUndoCache, setFieldUndoCache] = useState<FieldUndoCache>({});
 
   // Refs for scrolling
   const consumersRef = useRef<HTMLDivElement>(null);
   const producersRef = useRef<HTMLDivElement>(null);
+  const interfaceRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // API Call on Load
@@ -194,7 +198,7 @@ const SimulationConfig: React.FC = () => {
               onSectionReset={() => toggleSectionReset('consumers', ['printRate', 'consumerCount', 'autoScaling', 'refillRate', 'paperCapacity', 'paperCount'])}
               onSkipToNext={() => skipTo(producersRef)}
               onSkipAll={() => skipTo(bottomRef)}
-              skipLabel="Skip Consumers"
+              skipLabel="Skip to Producers"
             />
 
             <ConsumersSection
@@ -215,7 +219,9 @@ const SimulationConfig: React.FC = () => {
               section="producers"
               hasUndo={!!undoCache.producers}
               onSectionReset={() => toggleSectionReset('producers', ['fixedArrival', 'jobSpeed', 'minArrivalTime', 'maxArrivalTime', 'jobCount', 'minPapers', 'maxPapers', 'maxQueue'])}
+              onSkipToNext={() => skipTo(interfaceRef)}
               onSkipAll={() => skipTo(bottomRef)}
+              skipLabel="Skip to Interface"
             />
 
             <ProducersSection
@@ -224,6 +230,23 @@ const SimulationConfig: React.FC = () => {
               fieldUndoCache={fieldUndoCache}
               handleChange={handleChange}
               toggleFieldReset={toggleFieldReset}
+            />
+          </Box>
+
+          {/* ================= INTERFACE SECTION ================= */}
+          <Box ref={interfaceRef} className="section-container">
+            <SectionHeader
+              title="Interface"
+              imageSrc={InterfaceImg}
+              imageAlt="Interface Layout"
+              section="interface"
+              hasUndo={!!undoCache.interface}
+              onSectionReset={() => toggleSectionReset('interface', ['showTime', 'showSimulationStats', 'showLogs', 'showComponents'])}
+              onSkipAll={() => skipTo(bottomRef)}
+            />
+
+            <InterfaceSection
+              values={values}
             />
           </Box>
           

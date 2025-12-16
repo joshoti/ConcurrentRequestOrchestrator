@@ -22,7 +22,7 @@ export const ConsumersSection: React.FC<ConsumersSectionProps> = ({
   return (
     <Stack gap="xl" className="section-inputs">
       <InputGroup 
-        label="Print rate" 
+        label="Print rate (pages/sec)" 
         desc="How fast jobs get serviced (4-10)"
         value={values.printRate}
         field="printRate"
@@ -65,7 +65,7 @@ export const ConsumersSection: React.FC<ConsumersSectionProps> = ({
           onClick={() => toggleFieldReset('autoScaling')} 
           variant={fieldUndoCache.autoScaling !== undefined ? "light" : "subtle"}
           color={fieldUndoCache.autoScaling !== undefined ? "blue" : "red"}
-          size="xs"
+          size="sm"
           className="reset-button"
           leftSection={fieldUndoCache.autoScaling !== undefined ? <IconArrowBack size={14}/> : null}
         >
@@ -74,8 +74,8 @@ export const ConsumersSection: React.FC<ConsumersSectionProps> = ({
       </Box>
 
       <InputGroup 
-        label="Refill rate" 
-        desc="How quick we refill consumers (0.05-1)"
+        label="Refill rate (pages/sec)" 
+        desc="How quick we refill consumers (15-30)"
         value={values.refillRate}
         field="refillRate"
         error={errors.refillRate}

@@ -16,7 +16,12 @@ export const DEFAULTS: SimulationConfigState = {
   maxArrivalTime: 600,
   maxQueue: -1,
   minPapers: 5,
-  maxPapers: 15
+  maxPapers: 15,
+  // Interface
+  showTime: true,
+  showSimulationStats: true,
+  showLogs: true,
+  showComponents: true
 };
 
 export const RANGES: ValidationRanges = {

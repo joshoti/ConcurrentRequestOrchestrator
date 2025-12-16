@@ -19,6 +19,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   imageSrc,
   imageAlt,
+  section,
   hasUndo,
   onSectionReset,
   onSkipToNext,
@@ -35,7 +36,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           component="img"
           src={imageSrc}
           alt={imageAlt} 
-          className="section-image"
+          className={`section-image${section === 'interface' ? ' interface-image' : ''}`}
         />
         
         <Group gap="sm" className="section-actions">

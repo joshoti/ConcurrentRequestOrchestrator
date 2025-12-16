@@ -16,6 +16,11 @@ export interface SimulationConfigState {
   maxQueue: number;
   minPapers: number;
   maxPapers: number;
+  // Interface
+  showTime: boolean;
+  showSimulationStats: boolean;
+  showLogs: boolean;
+  showComponents: boolean;
 }
 
 // Validation ranges (min/max)
@@ -31,7 +36,7 @@ export type ValidationRanges = Partial<Record<keyof SimulationConfigState, Range
 export type FormErrors = Partial<Record<keyof SimulationConfigState, string>>;
 
 // Valid section names for the "Reset Section" logic
-export type SectionKey = 'consumers' | 'producers';
+export type SectionKey = 'consumers' | 'producers' | 'interface';
 
 // The Cache for Undo logic
 export type UndoCache = Record<SectionKey, Partial<SimulationConfigState> | null>;
