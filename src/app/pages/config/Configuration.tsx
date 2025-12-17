@@ -15,6 +15,7 @@ import {
   FieldUndoCache 
 } from './types';
 import { DEFAULTS, RANGES } from './constants';
+import { fetchConfig } from '../../api/api';
 
 // Import components
 import { SectionHeader } from './components/SectionHeader';
@@ -43,20 +44,20 @@ const SimulationConfig: React.FC = () => {
   const interfaceRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // API Call on Load
+  // Fetch config on load (with fallback to DEFAULTS)
   useEffect(() => {
-    const fetchData = async () => {
+    const loadConfig = async () => {
       try {
-        // SIMULATING API CALL
-        setTimeout(() => {
-          setValues(DEFAULTS); 
-          setLoading(false);
-        }, 800);
+        const config = await fetchConfig();
+        setValues(config);
       } catch (err) {
         console.error("Failed to fetch config", err);
+        setValues(DEFAULTS);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData();
+    loadConfig();
   }, []);
 
   // Generic Input Handler with Validation
@@ -258,7 +259,7 @@ const SimulationConfig: React.FC = () => {
       <ConfigBottomBar
         hasErrors={Object.keys(errors).length > 0}
         onBack={() => navigate('/')}
-        onBeginSimulation={() => navigate('/simulate')}
+        onBeginSimulation={() => navigate('/simulate', { state: { config: values } })}
       />
     </Box>
   );
