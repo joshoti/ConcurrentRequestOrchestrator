@@ -1,0 +1,7 @@
+export const STATS_THRESHOLDS = {
+  QUEUE_LENGTH_DANGER: 10,
+  AVG_COMPLETION_DANGER: 20,
+};
+
+export const EVENT_LOG_MAX_SIZE = 50;
+export const TIMER_UPDATE_INTERVAL = 10; // ms
