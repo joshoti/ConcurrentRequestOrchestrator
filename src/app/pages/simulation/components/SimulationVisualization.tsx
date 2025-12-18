@@ -3,10 +3,11 @@ import { Paper, Group, Box, Stack, Text } from '@mantine/core';
 import ProducerImg from '../../../assets/images/producer-picture.png';
 import ConsumerImg from '../../../assets/images/consumer-picture.jpg';
 import RefillerImg from '../../../assets/images/refiller-picture.png';
+import '../Simulation.css';
 
 export const SimulationVisualization: React.FC = () => {
   return (
-    <Paper shadow="sm" p={40} radius="lg" style={{ border: '1px solid #e9ecef', minHeight: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Paper shadow="sm" radius="lg" className="simulation-card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Group gap={20} align="center" style={{ width: '100%', maxWidth: '1200px' }}>
         
         {/* 1. PRODUCER */}
@@ -70,7 +71,7 @@ export const SimulationVisualization: React.FC = () => {
             component="img"
             src={RefillerImg}
             alt="Paper Refiller"
-            style={{ width: '128px', height: 'auto', objectFit: 'contain' }}
+            style={{ width: '110px', height: 'auto', objectFit: 'contain' }}
           />
         </Stack>
 

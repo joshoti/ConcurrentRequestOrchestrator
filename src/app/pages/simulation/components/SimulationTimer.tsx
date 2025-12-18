@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper, Group, Text, Button } from '@mantine/core';
+import '../Simulation.css';
 
 interface SimulationTimerProps {
   time: number;
@@ -8,7 +9,7 @@ interface SimulationTimerProps {
 
 export const SimulationTimer: React.FC<SimulationTimerProps> = ({ time, onStop }) => {
   return (
-    <Paper shadow="sm" p="xl" radius="lg" style={{ border: '1px solid #e9ecef' }}>
+    <Paper shadow="sm" radius="lg" className="simulation-card">
       <Group justify="space-between" align="center">
         <Text size="xl" fw={700} c="black" ff="monospace">
           Time: {time.toFixed(4)} s

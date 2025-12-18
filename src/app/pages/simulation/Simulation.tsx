@@ -129,7 +129,7 @@ const Simulation: React.FC = () => {
     <Box style={{ display: 'flex', flexDirection: 'row', height: '100vh', backgroundColor: '#f8f9fa', overflow: 'hidden' }}>
       
       {/* ================= LEFT PANEL: DASHBOARD ================= */}
-      <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '2rem', gap: '1.5rem', overflowY: 'auto' }}>
+      <Box style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '2rem', gap: '1.2rem', overflowY: 'auto' }}>
         
         <SimulationHeader isConnected={isConnected} />
 

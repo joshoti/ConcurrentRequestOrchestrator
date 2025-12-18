@@ -1,7 +1,8 @@
 import React from 'react';
-import { Paper, Title, Grid, Stack, Text } from '@mantine/core';
+import { Paper, Title, Grid } from '@mantine/core';
 import { SimulationStats } from '../../../api/api';
 import { STATS_THRESHOLDS } from '../constants';
+import { StatItem } from './StatItem';
 
 interface SimulationStatsDisplayProps {
   stats: SimulationStats;
@@ -9,8 +10,8 @@ interface SimulationStatsDisplayProps {
 
 export const SimulationStatsDisplay: React.FC<SimulationStatsDisplayProps> = ({ stats }) => {
   return (
-    <Paper shadow="sm" p="xl" radius="lg" style={{ border: '1px solid #e9ecef' }}>
-      <Title order={3} size="xl" mb="xl" fw={700}>Statistics</Title>
+    <Paper shadow="sm" radius="lg" className="simulation-card">
+      <Title order={3} size="lg" mb="lg" fw={700}>Statistics</Title>
       
       <Grid gutter="xl" justify="center">
         <Grid.Col span="auto">
@@ -28,7 +29,7 @@ export const SimulationStatsDisplay: React.FC<SimulationStatsDisplayProps> = ({ 
         </Grid.Col>
         <Grid.Col span="auto">
           <StatItem 
-            label="Avg completion (ms)" 
+            label="Avg completion (s)" 
             value={stats.avgJobCompletionTime.toFixed(2)} 
             isDanger={stats.avgJobCompletionTime > STATS_THRESHOLDS.AVG_COMPLETION_DANGER} 
           />
@@ -40,28 +41,9 @@ export const SimulationStatsDisplay: React.FC<SimulationStatsDisplayProps> = ({ 
           <StatItem label="Refill events" value={0} />
         </Grid.Col>
         <Grid.Col span="auto">
-          <StatItem label="Avg service (ms)" value={`${stats.avgJobCompletionTime.toFixed(0)}`} />
+          <StatItem label="Avg service (s)" value={`${stats.avgJobCompletionTime.toFixed(2)}`} />
         </Grid.Col>
       </Grid>
     </Paper>
   );
 };
-
-// --- Helper Component for Stats ---
-const StatItem = ({ label, value, isDanger = false }: { label: string, value: string | number, isDanger?: boolean }) => (
-  <Stack align="center" gap={4}>
-    <Text 
-      size="xs" 
-      fw={600} 
-      c="gray.6" 
-      tt="uppercase" 
-      ta="center"
-      style={{ letterSpacing: '0.05em', height: '2rem', display: 'flex', alignItems: 'flex-end', paddingBottom: '0.25rem' }}
-    >
-      {label}
-    </Text>
-    <Text size="xl" fw={700} c={isDanger ? 'red.5' : 'black'}>
-      {value}
-    </Text>
-  </Stack>
-);

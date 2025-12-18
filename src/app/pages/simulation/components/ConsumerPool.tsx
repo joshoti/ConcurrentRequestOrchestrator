@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Paper, Title, Stack, Group, Box, Text } from '@mantine/core';
+import '../Simulation.css';
 
 export type ConsumerStatus = 'serving' | 'waiting_refill' | 'idle';
 
@@ -27,8 +28,8 @@ export const ConsumerPool: React.FC<ConsumerPoolProps> = ({ consumers }) => {
   }, []);
 
   return (
-    <Paper shadow="sm" p="xl" radius="lg" style={{ border: '1px solid #e9ecef', height: '100%' }}>
-      <Title order={3} size="xl" mb="md" fw={700}>Consumer Pool</Title>
+    <Paper shadow="sm" radius="lg" className="simulation-card" style={{ height: '100%' }}>
+      <Title order={3} size="lg" mb="md" fw={700}>Consumer Pool</Title>
       
       <Group gap="xs" wrap="wrap">
         {consumers.length === 0 ? (
