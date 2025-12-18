@@ -72,6 +72,7 @@ export interface ConsumerUpdate {
   id: number;
   papersLeft: number;
   status: 'serving' | 'waiting_refill' | 'idle';
+  currentJobId?: number; // Which job is currently being served (null/undefined if idle)
 }
 
 // Job update - controls QueueDisplay
@@ -95,8 +96,9 @@ export type WebSocketMessage =
   | { type: 'consumer_update'; data: ConsumerUpdate }
   | { type: 'consumers_update'; data: ConsumerUpdate[] }
   | { type: 'job_update'; data: JobUpdate }
-  | { type: 'jobs_update'; data: JobUpdate[] }
+  | { type: 'jobs_update'; data: JobUpdate[] } // Full queue state (jobs waiting in queue only)
   | { type: 'stats_update'; data: SimulationStats }
+  | { type: 'simulation_started'; data: { timestamp: number } }
   | { type: 'simulation_complete'; data: { duration: number } };
 
 // Legacy export for backwards compatibility
@@ -169,6 +171,9 @@ export class SimulationWebSocket {
                 break;
               case 'stats_update':
                 if (this.onStatsCallback) this.onStatsCallback(message.data);
+                break;
+              case 'simulation_started':
+                console.log('Simulation started:', message.data);
                 break;
               case 'simulation_complete':
                 console.log('Simulation completed:', message.data);

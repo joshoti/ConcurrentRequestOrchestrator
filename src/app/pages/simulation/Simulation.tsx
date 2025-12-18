@@ -36,8 +36,8 @@ const Simulation: React.FC = () => {
     failedJobs: 0,
   });
   
-  const [jobs, setJobs] = useState(MOCK_JOBS);
-  const [consumers, setConsumers] = useState(MOCK_CONSUMERS);
+  const [jobs, setJobs] = useState<JobUpdate[]>(MOCK_JOBS);
+  const [consumers, setConsumers] = useState<ConsumerUpdate[]>(MOCK_CONSUMERS);
 
   // Redirect if no config provided
   useEffect(() => {

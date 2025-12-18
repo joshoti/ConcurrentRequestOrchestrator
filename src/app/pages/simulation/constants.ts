@@ -21,11 +21,11 @@ export const MOCK_JOBS = [
 ];
 
 export const MOCK_CONSUMERS = [
-  { id: 1, papersLeft: 120, status: 'serving' as const },
+  { id: 1, papersLeft: 120, status: 'serving' as const, currentJobId: 3 },
   { id: 2, papersLeft: 95, status: 'waiting_refill' as const },
-  { id: 3, papersLeft: 105, status: 'serving' as const },
+  { id: 3, papersLeft: 105, status: 'serving' as const, currentJobId: 5 },
   { id: 4, papersLeft: 150, status: 'idle' as const },
-  { id: 5, papersLeft: 80, status: 'serving' as const },
+  { id: 5, papersLeft: 80, status: 'serving' as const, currentJobId: 7 },
 ];
 
 export const MOCK_EVENTS = [

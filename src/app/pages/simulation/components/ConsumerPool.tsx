@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper, Title, Stack, Group, Box, Text } from '@mantine/core';
 
 export type ConsumerStatus = 'serving' | 'waiting_refill' | 'idle';
@@ -7,6 +7,7 @@ interface Consumer {
   id: number;
   papersLeft: number;
   status: ConsumerStatus; // Backend determines this
+  currentJobId?: number; // Which job is currently being served
 }
 
 interface ConsumerPoolProps {
@@ -14,6 +15,17 @@ interface ConsumerPoolProps {
 }
 
 export const ConsumerPool: React.FC<ConsumerPoolProps> = ({ consumers }) => {
+  const [showStatus, setShowStatus] = useState(true);
+
+  // Toggle between status and papers every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowStatus(prev => !prev);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Paper shadow="sm" p="xl" radius="lg" style={{ border: '1px solid #e9ecef', height: '100%' }}>
       <Title order={3} size="xl" mb="md" fw={700}>Consumer Pool</Title>
@@ -23,19 +35,36 @@ export const ConsumerPool: React.FC<ConsumerPoolProps> = ({ consumers }) => {
           <Text c="dimmed" size="sm">No active consumers</Text>
         ) : (
           consumers.map((consumer) => {
-            // Determine styling based on backend-provided status
-            const getConsumerStyle = (status: ConsumerStatus) => {
+            // Determine styling and text based on backend-provided status
+            const getConsumerDisplay = (status: ConsumerStatus, showStatus: boolean) => {
+              const papersText = `${consumer.papersLeft}\npapers\nleft`;
+              
               switch (status) {
                 case 'waiting_refill':
-                  return { bg: '#c92a2a', text: 'Waiting\nfor\nrefill' }; // Dark red
+                  return { 
+                    bg: '#c92a2a', 
+                    text: showStatus ? 'Waiting\nfor\nrefill' : papersText
+                  };
                 case 'serving':
-                  return { bg: '#18426aff', text: `${consumer.papersLeft}\npapers\nleft` }; // Dark blue
+                  const statusText = consumer.currentJobId ? `Serving\nJob\n${consumer.currentJobId}` : 'Serving';
+                  return { 
+                    bg: '#18426aff', 
+                    text: showStatus ? statusText : papersText
+                  };
+                case 'idle':
+                  return { 
+                    bg: '#495057', 
+                    text: showStatus ? '\n\nIdle' : papersText
+                  };
                 default:
-                  return { bg: '#18426aff', text: `${consumer.papersLeft}\npapers\nleft` };
+                  return { 
+                    bg: '#495057', 
+                    text: papersText
+                  };
               }
             };
 
-            const style = getConsumerStyle(consumer.status);
+            const style = getConsumerDisplay(consumer.status, showStatus);
             
             return (
               <Box
