@@ -59,31 +59,50 @@ export const updateConfig = async (config: SimulationConfigState): Promise<boole
 
 // ==================== WebSocket API ====================
 
-export type SimulationEventType = 
-  | 'consumer_created'
-  | 'consumer_removed'
-  | 'job_created'
-  | 'job_assigned'
-  | 'job_completed'
-  | 'job_failed'
-  | 'paper_refilled'
-  | 'simulation_started'
-  | 'simulation_completed'
-  | 'simulation_error'
-  | 'stats_update';
+// ==================== Message Types ====================
 
-export interface SimulationEvent {
-  type: SimulationEventType;
-  timestamp: number;
-  data: any;
+// Log event - displayed in EventLogsPanel
+export interface LogEvent {
+  timestamp: number; // in milliseconds
+  message: string;   // formatted message to display
 }
 
+// Consumer update - controls ConsumerPool display
+export interface ConsumerUpdate {
+  id: number;
+  papersLeft: number;
+  status: 'serving' | 'waiting_refill' | 'idle';
+}
+
+// Job update - controls QueueDisplay
+export interface JobUpdate {
+  id: number;
+  pages: number;
+}
+
+// Stats update - controls SimulationStatsDisplay
 export interface SimulationStats {
   totalJobsProcessed: number;
   activeConsumers: number;
   queueLength: number;
   avgJobCompletionTime: number;
   failedJobs: number;
+}
+
+// WebSocket message types from backend
+export type WebSocketMessage =
+  | { type: 'log'; data: LogEvent }
+  | { type: 'consumer_update'; data: ConsumerUpdate }
+  | { type: 'consumers_update'; data: ConsumerUpdate[] }
+  | { type: 'job_update'; data: JobUpdate }
+  | { type: 'jobs_update'; data: JobUpdate[] }
+  | { type: 'stats_update'; data: SimulationStats }
+  | { type: 'simulation_complete'; data: { duration: number } };
+
+// Legacy export for backwards compatibility
+export interface SimulationEvent {
+  timestamp: number;
+  message: string;
 }
 
 /**
@@ -96,7 +115,11 @@ export class SimulationWebSocket {
   private reconnectDelay = 2000;
   
   // Event handlers
-  private onEventCallback?: (event: SimulationEvent) => void;
+  private onLogCallback?: (log: LogEvent) => void;
+  private onConsumerUpdateCallback?: (consumer: ConsumerUpdate) => void;
+  private onConsumersUpdateCallback?: (consumers: ConsumerUpdate[]) => void;
+  private onJobUpdateCallback?: (job: JobUpdate) => void;
+  private onJobsUpdateCallback?: (jobs: JobUpdate[]) => void;
   private onStatsCallback?: (stats: SimulationStats) => void;
   private onConnectedCallback?: () => void;
   private onDisconnectedCallback?: () => void;
@@ -125,13 +148,33 @@ export class SimulationWebSocket {
 
         this.socket.onmessage = (event) => {
           try {
-            const message = JSON.parse(event.data);
+            const message: WebSocketMessage = JSON.parse(event.data);
             
-            // Handle different message types
-            if (message.type === 'stats_update' && this.onStatsCallback) {
-              this.onStatsCallback(message.data);
-            } else if (this.onEventCallback) {
-              this.onEventCallback(message);
+            // Route messages to appropriate handlers
+            switch (message.type) {
+              case 'log':
+                if (this.onLogCallback) this.onLogCallback(message.data);
+                break;
+              case 'consumer_update':
+                if (this.onConsumerUpdateCallback) this.onConsumerUpdateCallback(message.data);
+                break;
+              case 'consumers_update':
+                if (this.onConsumersUpdateCallback) this.onConsumersUpdateCallback(message.data);
+                break;
+              case 'job_update':
+                if (this.onJobUpdateCallback) this.onJobUpdateCallback(message.data);
+                break;
+              case 'jobs_update':
+                if (this.onJobsUpdateCallback) this.onJobsUpdateCallback(message.data);
+                break;
+              case 'stats_update':
+                if (this.onStatsCallback) this.onStatsCallback(message.data);
+                break;
+              case 'simulation_complete':
+                console.log('Simulation completed:', message.data);
+                break;
+              default:
+                console.warn('Unknown message type:', message);
             }
           } catch (error) {
             console.error('Failed to parse WebSocket message:', error);
@@ -214,10 +257,38 @@ export class SimulationWebSocket {
   }
 
   /**
-   * Register event handler for simulation events
+   * Register handler for log events (displayed in EventLogsPanel)
    */
-  onEvent(callback: (event: SimulationEvent) => void) {
-    this.onEventCallback = callback;
+  onLog(callback: (log: LogEvent) => void) {
+    this.onLogCallback = callback;
+  }
+
+  /**
+   * Register handler for single consumer update
+   */
+  onConsumerUpdate(callback: (consumer: ConsumerUpdate) => void) {
+    this.onConsumerUpdateCallback = callback;
+  }
+
+  /**
+   * Register handler for full consumer list update
+   */
+  onConsumersUpdate(callback: (consumers: ConsumerUpdate[]) => void) {
+    this.onConsumersUpdateCallback = callback;
+  }
+
+  /**
+   * Register handler for single job update
+   */
+  onJobUpdate(callback: (job: JobUpdate) => void) {
+    this.onJobUpdateCallback = callback;
+  }
+
+  /**
+   * Register handler for full job queue update
+   */
+  onJobsUpdate(callback: (jobs: JobUpdate[]) => void) {
+    this.onJobsUpdateCallback = callback;
   }
 
   /**

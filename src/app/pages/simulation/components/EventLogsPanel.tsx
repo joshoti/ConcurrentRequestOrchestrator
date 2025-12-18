@@ -1,11 +1,17 @@
 import React from 'react';
 import { Box, Title, Stack, Text, Group } from '@mantine/core';
-import { SimulationEvent } from '../../../api/api';
+import { LogEvent } from '../../../api/api';
 
 interface EventLogsPanelProps {
-  events: SimulationEvent[];
+  events: LogEvent[];
   showTime: boolean;
 }
+
+// Helper to format timestamp with leading zeros for alignment
+const formatTimestamp = (ms: number): string => {
+  const formatted = ms.toFixed(3).padStart(12, '0');
+  return formatted + 'ms';
+};
 
 export const EventLogsPanel: React.FC<EventLogsPanelProps> = ({ events, showTime }) => {
   return (
@@ -15,17 +21,24 @@ export const EventLogsPanel: React.FC<EventLogsPanelProps> = ({ events, showTime
       </Box>
       
       <Box style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
-        <Stack gap="md" ff="monospace" fz="sm" style={{ opacity: 0.9 }}>
+        <Stack gap="0" ff="monospace" fz="sm" style={{ opacity: 0.9 }}>
           {events.length === 0 ? (
             <Text c="gray.5">No events yet...</Text>
           ) : (
             events.map((event, index) => (
-              <Group key={index} gap="xs" align="flex-start" wrap="nowrap">
-                <Text c="gray.5" style={{ whiteSpace: 'nowrap' }}>
-                  {showTime ? new Date(event.timestamp).toLocaleTimeString() : `${event.timestamp}ms`}:
+              <Box key={index}>
+                <Text c="white" style={{ lineHeight: 1.6, padding: '0.5rem 0' }}>
+                  {showTime && `${formatTimestamp(event.timestamp)}: `}
+                  {event.message}
                 </Text>
-                <Text c="white">{event.type} - {JSON.stringify(event.data)}</Text>
-              </Group>
+                {index < events.length - 1 && (
+                  <Box style={{ 
+                    height: '1px', 
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    margin: '0.25rem 0'
+                  }} />
+                )}
+              </Box>
             ))
           )}
           <Box h={40} />

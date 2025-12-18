@@ -3,7 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Box } from '@mantine/core';
 import { 
   simulationWS, 
-  SimulationEvent, 
+  LogEvent,
+  ConsumerUpdate,
+  JobUpdate,
   SimulationStats 
 } from '../../api/api';
 import { SimulationConfigState } from '../config/types';
@@ -12,7 +14,9 @@ import { SimulationTimer } from './components/SimulationTimer';
 import { SimulationVisualization } from './components/SimulationVisualization';
 import { SimulationStatsDisplay } from './components/SimulationStatsDisplay';
 import { EventLogsPanel } from './components/EventLogsPanel';
-import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL } from './constants';
+import { QueueDisplay } from './components/QueueDisplay';
+import { ConsumerPool } from './components/ConsumerPool';
+import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL, MOCK_JOBS, MOCK_CONSUMERS, MOCK_EVENTS } from './constants';
 
 const Simulation: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +27,7 @@ const Simulation: React.FC = () => {
   
   const [isConnected, setIsConnected] = useState(false);
   const [time, setTime] = useState<number>(0);
-  const [events, setEvents] = useState<SimulationEvent[]>([]);
+  const [events, setEvents] = useState<LogEvent[]>(MOCK_EVENTS);
   const [stats, setStats] = useState<SimulationStats>({
     totalJobsProcessed: 0,
     activeConsumers: 0,
@@ -31,6 +35,9 @@ const Simulation: React.FC = () => {
     avgJobCompletionTime: 0,
     failedJobs: 0,
   });
+  
+  const [jobs, setJobs] = useState(MOCK_JOBS);
+  const [consumers, setConsumers] = useState(MOCK_CONSUMERS);
 
   // Redirect if no config provided
   useEffect(() => {
@@ -44,10 +51,10 @@ const Simulation: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(prev => prev + 0.01);
-    }, 10);
+    }, TIMER_UPDATE_INTERVAL);
     return () => clearInterval(timer);
   }, []);
-TIMER_UPDATE_INTERVAL
+
   // Setup WebSocket connection
   useEffect(() => {
     if (!config) return;
@@ -64,9 +71,25 @@ TIMER_UPDATE_INTERVAL
         setIsConnected(false);
       });
 
-      simulationWS.onEvent((event: SimulationEvent) => {
-        console.log('Simulation event:', event);
-        setEvents(prev => [...prev, event].slice(-EVENT_LOG_MAX_SIZE));
+      // Register handlers for different message types
+      simulationWS.onLog((log: LogEvent) => {
+        setEvents(prev => [...prev, log].slice(-EVENT_LOG_MAX_SIZE));
+      });
+
+      simulationWS.onConsumerUpdate((consumer: ConsumerUpdate) => {
+        setConsumers(prev => prev.map(c => c.id === consumer.id ? consumer : c));
+      });
+
+      simulationWS.onConsumersUpdate((consumers: ConsumerUpdate[]) => {
+        setConsumers(consumers);
+      });
+
+      simulationWS.onJobUpdate((job: JobUpdate) => {
+        setJobs(prev => [...prev, job]);
+      });
+
+      simulationWS.onJobsUpdate((jobs: JobUpdate[]) => {
+        setJobs(jobs);
       });
 
       simulationWS.onStats((newStats: SimulationStats) => {
@@ -113,6 +136,16 @@ TIMER_UPDATE_INTERVAL
         {config.showTime && <SimulationTimer time={time} onStop={handleStop} />}
 
         {config.showComponents && <SimulationVisualization />}
+
+        {/* Queue and Consumer Pool Row */}
+        <Box style={{ display: 'flex', gap: '1.5rem', width: '100%' }}>
+          <Box style={{ flex: '0 0 60%' }}>
+            <QueueDisplay jobs={jobs} />
+          </Box>
+          <Box style={{ flex: '0 0 40%' }}>
+            <ConsumerPool consumers={consumers} />
+          </Box>
+        </Box>
 
         {config.showSimulationStats && <SimulationStatsDisplay stats={stats} />}
       </Box>
