@@ -139,10 +139,10 @@ const Simulation: React.FC = () => {
 
         {/* Queue and Consumer Pool Row */}
         <Box style={{ display: 'flex', gap: '1.5rem', width: '100%' }}>
-          <Box style={{ flex: '0 0 60%' }}>
+          <Box style={{ flex: '1 1 60%', minWidth: 0 }}>
             <QueueDisplay jobs={jobs} />
           </Box>
-          <Box style={{ flex: '0 0 40%' }}>
+          <Box style={{ flex: '1 1 40%', minWidth: 0 }}>
             <ConsumerPool consumers={consumers} />
           </Box>
         </Box>
