@@ -3,23 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Title, Text, Button, Group, Stack, Image, Box, Loader } from '@mantine/core';
 import LaptopHero from '../../assets/images/landing_page_screen.png';
 import './Homepage.css';
+import { useConfig } from '../../context/ConfigContext';
 
 const Homepage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { config, isLoading: configLoading } = useConfig();
 
   const handleRunSimulation = async () => {
     setIsLoading(true);
 
     try {
-      // ---------------------------------------------------------
-      // TODO: Insert your API call here
-      // Example:
-      // await fetch('https://your-api.com/start-simulation', { method: 'POST' });
-      // ---------------------------------------------------------
-      
-      // Navigate only after the API call finishes successfully
-      navigate('/simulate');
+      // Navigate to simulation with config from context
+      navigate('/simulate', { state: { config } });
       
     } catch (error) {
       console.error("Error starting simulation:", error);
@@ -78,7 +74,7 @@ const Homepage = () => {
         
         <Button
           onClick={handleRunSimulation}
-          disabled={isLoading}
+          disabled={isLoading || configLoading}
           variant="filled"
           color="dark"
           size="md"
@@ -86,9 +82,9 @@ const Homepage = () => {
           h={60}
           fw={600}
           className="simulate-button"
-          leftSection={isLoading ? <Loader size="sm" color="white" /> : null}
+          leftSection={isLoading || configLoading ? <Loader size="sm" color="white" /> : null}
         >
-          {isLoading ? 'Processing...' : 'Run simulation'}
+          {isLoading || configLoading ? 'Loading...' : 'Run simulation'}
         </Button>
       </Group>
 

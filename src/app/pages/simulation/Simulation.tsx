@@ -9,6 +9,7 @@ import {
   SimulationStats 
 } from '../../api/api';
 import { SimulationConfigState } from '../config/types';
+import { useConfig } from '../../context/ConfigContext';
 import { SimulationHeader } from './components/SimulationHeader';
 import { SimulationTimer } from './components/SimulationTimer';
 import { SimulationVisualization } from './components/SimulationVisualization';
@@ -21,9 +22,10 @@ import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL, MOCK_JOBS, MOCK_CONSUMERS, M
 const Simulation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { config: contextConfig } = useConfig();
   
-  // Get config from navigation state or redirect back if not provided
-  const config = (location.state as { config?: SimulationConfigState })?.config;
+  // Get config from navigation state or fallback to context
+  const config = (location.state as { config?: SimulationConfigState })?.config || contextConfig;
   
   const [isConnected, setIsConnected] = useState(false);
   const [time, setTime] = useState<number>(0);
@@ -39,14 +41,6 @@ const Simulation: React.FC = () => {
   const [jobs, setJobs] = useState<JobUpdate[]>(MOCK_JOBS);
   const [consumers, setConsumers] = useState<ConsumerUpdate[]>(MOCK_CONSUMERS);
 
-  // Redirect if no config provided
-  useEffect(() => {
-    if (!config) {
-      console.error('No configuration provided');
-      navigate('/configuration');
-    }
-  }, [config, navigate]);
-
   // Timer effect
   useEffect(() => {
     const timer = setInterval(() => {
@@ -57,8 +51,6 @@ const Simulation: React.FC = () => {
 
   // Setup WebSocket connection
   useEffect(() => {
-    if (!config) return;
-
     const setupWebSocket = async () => {
       // Register event handlers
       simulationWS.onConnected(() => {
@@ -120,10 +112,6 @@ const Simulation: React.FC = () => {
     simulationWS.disconnect();
     navigate('/configuration');
   }, [navigate]);
-
-  if (!config) {
-    return null;
-  }
 
   return (
     <Box style={{ display: 'flex', flexDirection: 'row', height: '100vh', backgroundColor: '#f8f9fa', overflow: 'hidden' }}>

@@ -15,7 +15,7 @@ import {
   FieldUndoCache 
 } from './types';
 import { DEFAULTS, RANGES } from './constants';
-import { fetchConfig } from '../../api/api';
+import { useConfig } from '../../context/ConfigContext';
 
 // Import components
 import { SectionHeader } from './components/SectionHeader';
@@ -26,10 +26,10 @@ import { ConfigBottomBar } from './components/ConfigBottomBar';
 
 const SimulationConfig: React.FC = () => {
   const navigate = useNavigate();
+  const { config: contextConfig, setConfig: setContextConfig, isLoading: contextLoading } = useConfig();
   
   // State
-  const [loading, setLoading] = useState<boolean>(true);
-  const [values, setValues] = useState<SimulationConfigState>(DEFAULTS);
+  const [values, setValues] = useState<SimulationConfigState>(contextConfig);
   const [errors, setErrors] = useState<FormErrors>({});
   const [undoCache, setUndoCache] = useState<UndoCache>({ 
     consumers: null, 
@@ -44,21 +44,10 @@ const SimulationConfig: React.FC = () => {
   const interfaceRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // Fetch config on load (with fallback to DEFAULTS)
+  // Initialize values from context when context config changes
   useEffect(() => {
-    const loadConfig = async () => {
-      try {
-        const config = await fetchConfig();
-        setValues(config);
-      } catch (err) {
-        console.error("Failed to fetch config", err);
-        setValues(DEFAULTS);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadConfig();
-  }, []);
+    setValues(contextConfig);
+  }, [contextConfig]);
 
   // Generic Input Handler with Validation
   const handleChange = (field: keyof SimulationConfigState, newVal: string | number | boolean) => {
@@ -167,7 +156,14 @@ const SimulationConfig: React.FC = () => {
     ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  if (loading) {
+  // Handle navigation to simulation
+  const handleBeginSimulation = () => {
+    // Update context with current values before navigating
+    setContextConfig(values);
+    navigate('/simulate', { state: { config: values } });
+  };
+
+  if (contextLoading) {
     return (
       <Center h="100vh">
         <Stack align="center" gap="md">
@@ -196,7 +192,7 @@ const SimulationConfig: React.FC = () => {
               imageAlt="Consumers Server Rack"
               section="consumers"
               hasUndo={!!undoCache.consumers}
-              onSectionReset={() => toggleSectionReset('consumers', ['printRate', 'consumerCount', 'autoScaling', 'refillRate', 'paperCapacity', 'paperCount'])}
+              onSectionReset={() => toggleSectionReset('consumers', ['printRate', 'consumerCount', 'autoScaling', 'refillRate', 'paperCapacity'])}
               onSkipToNext={() => skipTo(producersRef)}
               onSkipAll={() => skipTo(bottomRef)}
               skipLabel="Skip to Producers"
@@ -219,7 +215,7 @@ const SimulationConfig: React.FC = () => {
               imageAlt="Producers Laptops"
               section="producers"
               hasUndo={!!undoCache.producers}
-              onSectionReset={() => toggleSectionReset('producers', ['fixedArrival', 'jobSpeed', 'minArrivalTime', 'maxArrivalTime', 'jobCount', 'minPapers', 'maxPapers', 'maxQueue'])}
+              onSectionReset={() => toggleSectionReset('producers', ['fixedArrival', 'jobArrivalTime', 'minArrivalTime', 'maxArrivalTime', 'jobCount', 'minPapers', 'maxPapers', 'maxQueue'])}
               onSkipToNext={() => skipTo(interfaceRef)}
               onSkipAll={() => skipTo(bottomRef)}
               skipLabel="Skip to Interface"
@@ -259,7 +255,7 @@ const SimulationConfig: React.FC = () => {
       <ConfigBottomBar
         hasErrors={Object.keys(errors).length > 0}
         onBack={() => navigate('/')}
-        onBeginSimulation={() => navigate('/simulate', { state: { config: values } })}
+        onBeginSimulation={handleBeginSimulation}
       />
     </Box>
   );

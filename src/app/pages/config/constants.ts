@@ -1,4 +1,4 @@
-import { SimulationConfigState, ValidationRanges } from './types';
+import { SimulationConfigState, ValidationRanges } from "./types";
 
 export const DEFAULTS: SimulationConfigState = {
   // Consumers
@@ -7,9 +7,8 @@ export const DEFAULTS: SimulationConfigState = {
   autoScaling: false,
   refillRate: 25,
   paperCapacity: 150,
-  paperCount: 50,
   // Producers
-  jobSpeed: 500,
+  jobArrivalTime: 500,
   jobCount: 10,
   fixedArrival: true,
   minArrivalTime: 300,
@@ -21,7 +20,7 @@ export const DEFAULTS: SimulationConfigState = {
   showTime: true,
   showSimulationStats: true,
   showLogs: true,
-  showComponents: true
+  showComponents: true,
 };
 
 export const RANGES: ValidationRanges = {
@@ -29,8 +28,7 @@ export const RANGES: ValidationRanges = {
   consumerCount: { min: 1, max: 5 },
   refillRate: { min: 15, max: 30 },
   paperCapacity: { min: 50, max: 200 },
-  paperCount: { min: 1, max: 100 },
-  jobSpeed: { min: 200, max: 800 },
+  jobArrivalTime: { min: 200, max: 800 },
   minArrivalTime: { min: 200, max: 400 },
   maxArrivalTime: { min: 500, max: 800 },
   minPapers: { min: 5, max: 10 },

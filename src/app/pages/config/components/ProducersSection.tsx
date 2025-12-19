@@ -56,12 +56,12 @@ export const ProducersSection: React.FC<ProducersSectionProps> = ({
         <InputGroup 
           label="Interval of incoming jobs (ms)" 
           desc="Time between next job arrival (200-800)"
-          value={values.jobSpeed}
-          field="jobSpeed"
-          error={errors.jobSpeed}
+          value={values.jobArrivalTime}
+          field="jobArrivalTime"
+          error={errors.jobArrivalTime}
           onChange={handleChange}
-          onReset={() => toggleFieldReset('jobSpeed')}
-          hasUndo={fieldUndoCache.jobSpeed !== undefined}
+          onReset={() => toggleFieldReset('jobArrivalTime')}
+          hasUndo={fieldUndoCache.jobArrivalTime !== undefined}
         />
       ) : (
         <>

@@ -3,7 +3,7 @@ import { DEFAULTS } from '../pages/config/constants';
 
 // API Configuration
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
-const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8080';
+const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8080/websocket';
 
 // ==================== HTTP API ====================
 

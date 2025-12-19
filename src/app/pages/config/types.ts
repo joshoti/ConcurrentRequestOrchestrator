@@ -6,9 +6,8 @@ export interface SimulationConfigState {
   autoScaling: boolean;
   refillRate: number;
   paperCapacity: number;
-  paperCount: number;
   // Producers
-  jobSpeed: number;
+  jobArrivalTime: number;
   jobCount: number;
   fixedArrival: boolean;
   minArrivalTime: number;
