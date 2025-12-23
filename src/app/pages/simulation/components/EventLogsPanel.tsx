@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Box, Title, Stack, Text } from '@mantine/core';
 import { LogEvent } from '../../../api/api';
 
@@ -14,6 +14,13 @@ const formatTimestamp = (ms: number): string => {
 };
 
 export const EventLogsPanel: React.FC<EventLogsPanelProps> = ({ events, showTime }) => {
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when new events arrive
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [events]);
+
   return (
     <Box style={{ width: '400px', backgroundColor: '#333333', color: 'white', display: 'flex', flexDirection: 'column', height: '100vh', boxShadow: '-8px 0 24px rgba(0, 0, 0, 0.3)' }}>
       <Box p="xl" style={{ borderBottom: '1px solid #4b5563' }}>
@@ -41,7 +48,7 @@ export const EventLogsPanel: React.FC<EventLogsPanelProps> = ({ events, showTime
               </Box>
             ))
           )}
-          <Box h={40} />
+          <div ref={bottomRef} />
         </Stack>
       </Box>
     </Box>
