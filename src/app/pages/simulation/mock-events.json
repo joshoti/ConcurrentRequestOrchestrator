@@ -1,0 +1,3084 @@
+[
+  {
+    "type": "simulation_started",
+    "data": {
+      "timestamp": 0
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 0,
+      "message": "simulation begins"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 205.341,
+      "message": "job1 arrives, needs 17 papers, inter-arrival time = 205.341ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 1,
+      "queueLength": 0,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 205.489,
+      "message": "job1 enters queue, queue length = 1"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 1,
+      "papersRequired": 17
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 1,
+      "queueLength": 1,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 205.532,
+      "message": "job1 leaves queue, time in queue = 0.043ms, queue_length = 0"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": []
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 1,
+      "queueLength": 0,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 205.561,
+      "message": "job1 begins service at printer1, printing 17 pages in about 3400ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 1
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 410.390,
+      "message": "job2 arrives, needs 17 papers, inter-arrival time = 205.049ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 2,
+      "queueLength": 0,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 410.494,
+      "message": "job2 enters queue, queue length = 1"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 2,
+      "papersRequired": 17
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 2,
+      "queueLength": 1,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 410.542,
+      "message": "job2 leaves queue, time in queue = 0.048ms, queue_length = 0"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": []
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 2,
+      "queueLength": 0,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 410.564,
+      "message": "job2 begins service at printer2, printing 17 pages in about 3400ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 2
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 615.068,
+      "message": "job3 arrives, needs 12 papers, inter-arrival time = 204.678ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 3,
+      "queueLength": 0,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 615.289,
+      "message": "job3 enters queue, queue length = 1"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 3,
+      "papersRequired": 12
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 3,
+      "queueLength": 1,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 819.689,
+      "message": "job4 arrives, needs 30 papers, inter-arrival time = 204.621ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 4,
+      "queueLength": 1,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 819.850,
+      "message": "job4 enters queue, queue length = 2"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 4,
+      "papersRequired": 30
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 4,
+      "queueLength": 2,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1024.747,
+      "message": "job5 arrives, needs 23 papers, inter-arrival time = 205.058ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 5,
+      "queueLength": 2,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1024.862,
+      "message": "job5 enters queue, queue length = 3"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 5,
+      "papersRequired": 23
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 5,
+      "queueLength": 3,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1229.990,
+      "message": "job6 arrives, needs 30 papers, inter-arrival time = 205.243ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 6,
+      "queueLength": 3,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1230.101,
+      "message": "job6 enters queue, queue length = 4"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 6,
+      "papersRequired": 30
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 6,
+      "queueLength": 4,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1433.931,
+      "message": "job7 arrives, needs 19 papers, inter-arrival time = 203.941ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 7,
+      "queueLength": 4,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1434.052,
+      "message": "job7 enters queue, queue length = 5"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 7,
+      "papersRequired": 19
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 7,
+      "queueLength": 5,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1635.434,
+      "message": "job8 arrives, needs 18 papers, inter-arrival time = 201.503ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 8,
+      "queueLength": 5,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1635.505,
+      "message": "job8 enters queue, queue length = 6"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 8,
+      "papersRequired": 18
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 8,
+      "queueLength": 6,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1837.892,
+      "message": "job9 arrives, needs 18 papers, inter-arrival time = 202.458ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 9,
+      "queueLength": 6,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 1837.995,
+      "message": "job9 enters queue, queue length = 7"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 9,
+      "papersRequired": 18
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 9,
+      "queueLength": 7,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2041.016,
+      "message": "job10 arrives, needs 11 papers, inter-arrival time = 203.124ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 10,
+      "queueLength": 7,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2041.078,
+      "message": "job10 enters queue, queue length = 8"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 10,
+      "papersRequired": 11
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 10,
+      "queueLength": 8,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2246.160,
+      "message": "job11 arrives, needs 16 papers, inter-arrival time = 205.144ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 11,
+      "queueLength": 8,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2246.429,
+      "message": "job11 enters queue, queue length = 9"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 11,
+      "papersRequired": 16
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 11,
+      "queueLength": 9,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2450.132,
+      "message": "job12 arrives, needs 12 papers, inter-arrival time = 203.972ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 12,
+      "queueLength": 9,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2450.333,
+      "message": "job12 enters queue, queue length = 10"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 12,
+      "papersRequired": 12
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 12,
+      "queueLength": 10,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2662.797,
+      "message": "job13 arrives, needs 10 papers, inter-arrival time = 212.665ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 13,
+      "queueLength": 10,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2663.812,
+      "message": "job13 enters queue, queue length = 11"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 13,
+      "papersRequired": 10
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 13,
+      "queueLength": 11,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2869.444,
+      "message": "job14 arrives, needs 30 papers, inter-arrival time = 206.647ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 14,
+      "queueLength": 11,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 2869.490,
+      "message": "job14 enters queue, queue length = 12"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 14,
+      "papersRequired": 30
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 14,
+      "queueLength": 12,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3007.310,
+      "message": "Autoscaling: Scaled UP to 3 printers (queue length: 12)"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3007.613,
+      "message": "job3 leaves queue, time in queue = 2392.324ms, queue_length = 11"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 4,
+        "papersRequired": 30
+      },
+      {
+        "id": 5,
+        "papersRequired": 23
+      },
+      {
+        "id": 6,
+        "papersRequired": 30
+      },
+      {
+        "id": 7,
+        "papersRequired": 19
+      },
+      {
+        "id": 8,
+        "papersRequired": 18
+      },
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 14,
+      "queueLength": 11,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3007.738,
+      "message": "job3 begins service at printer3, printing 12 pages in about 2400ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 3
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3074.521,
+      "message": "job15 arrives, needs 10 papers, inter-arrival time = 205.077ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 15,
+      "queueLength": 11,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3074.584,
+      "message": "job15 enters queue, queue length = 12"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 15,
+      "papersRequired": 10
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 15,
+      "queueLength": 12,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3277.572,
+      "message": "job16 arrives, needs 15 papers, inter-arrival time = 203.051ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 16,
+      "queueLength": 12,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3277.640,
+      "message": "job16 enters queue, queue length = 13"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 16,
+      "papersRequired": 15
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 16,
+      "queueLength": 13,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3481.859,
+      "message": "job17 arrives, needs 26 papers, inter-arrival time = 204.287ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 17,
+      "queueLength": 13,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3481.970,
+      "message": "job17 enters queue, queue length = 14"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 17,
+      "papersRequired": 26
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 0,
+      "jobsReceived": 17,
+      "queueLength": 14,
+      "avgCompletionTime": 0.00,
+      "papersUsed": 0,
+      "refillEvents": 0,
+      "avgServiceTime": 0.00
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 73,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3607.409,
+      "message": "job1 departs from printer1, service time = 3401.848ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 1,
+      "jobsReceived": 17,
+      "queueLength": 14,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 17,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3607.492,
+      "message": "job4 leaves queue, time in queue = 2787.642ms, queue_length = 13"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 5,
+        "papersRequired": 23
+      },
+      {
+        "id": 6,
+        "papersRequired": 30
+      },
+      {
+        "id": 7,
+        "papersRequired": 19
+      },
+      {
+        "id": 8,
+        "papersRequired": 18
+      },
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 1,
+      "jobsReceived": 17,
+      "queueLength": 13,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 17,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3607.534,
+      "message": "job4 begins service at printer1, printing 30 pages in about 6000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 73,
+      "status": "serving",
+      "currentJobId": 4
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3685.752,
+      "message": "job18 arrives, needs 14 papers, inter-arrival time = 203.893ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 1,
+      "jobsReceived": 18,
+      "queueLength": 13,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 17,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3685.823,
+      "message": "job18 enters queue, queue length = 14"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 18,
+      "papersRequired": 14
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 1,
+      "jobsReceived": 18,
+      "queueLength": 14,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 17,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 73,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3815.672,
+      "message": "job2 departs from printer2, service time = 3405.108ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 18,
+      "queueLength": 14,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3815.873,
+      "message": "job5 leaves queue, time in queue = 2791.011ms, queue_length = 13"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 6,
+        "papersRequired": 30
+      },
+      {
+        "id": 7,
+        "papersRequired": 19
+      },
+      {
+        "id": 8,
+        "papersRequired": 18
+      },
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 18,
+      "queueLength": 13,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3815.950,
+      "message": "job5 begins service at printer2, printing 23 pages in about 4600ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 73,
+      "status": "serving",
+      "currentJobId": 5
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3890.888,
+      "message": "job19 arrives, needs 14 papers, inter-arrival time = 205.136ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 19,
+      "queueLength": 13,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 3890.987,
+      "message": "job19 enters queue, queue length = 14"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 19,
+      "papersRequired": 14
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 19,
+      "queueLength": 14,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 4094.104,
+      "message": "job20 arrives, needs 20 papers, inter-arrival time = 203.216ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 20,
+      "queueLength": 14,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 4094.209,
+      "message": "job20 enters queue, queue length = 15"
+    }
+  },
+  {
+    "type": "job_update",
+    "data": {
+      "id": 20,
+      "papersRequired": 20
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 2,
+      "jobsReceived": 20,
+      "queueLength": 15,
+      "avgCompletionTime": 3.40,
+      "papersUsed": 34,
+      "refillEvents": 0,
+      "avgServiceTime": 3.40
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 78,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 5408.921,
+      "message": "job3 departs from printer3, service time = 2401.183ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 3,
+      "jobsReceived": 20,
+      "queueLength": 15,
+      "avgCompletionTime": 3.87,
+      "papersUsed": 46,
+      "refillEvents": 0,
+      "avgServiceTime": 3.07
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 5409.061,
+      "message": "job6 leaves queue, time in queue = 4178.960ms, queue_length = 14"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 7,
+        "papersRequired": 19
+      },
+      {
+        "id": 8,
+        "papersRequired": 18
+      },
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 3,
+      "jobsReceived": 20,
+      "queueLength": 14,
+      "avgCompletionTime": 3.87,
+      "papersUsed": 46,
+      "refillEvents": 0,
+      "avgServiceTime": 3.07
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 5409.116,
+      "message": "job6 begins service at printer3, printing 30 pages in about 6000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 78,
+      "status": "serving",
+      "currentJobId": 6
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 50,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 8420.077,
+      "message": "job5 departs from printer2, service time = 4604.127ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 4,
+      "jobsReceived": 20,
+      "queueLength": 14,
+      "avgCompletionTime": 4.75,
+      "papersUsed": 69,
+      "refillEvents": 0,
+      "avgServiceTime": 3.45
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 8420.218,
+      "message": "job7 leaves queue, time in queue = 6986.166ms, queue_length = 13"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 8,
+        "papersRequired": 18
+      },
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 4,
+      "jobsReceived": 20,
+      "queueLength": 13,
+      "avgCompletionTime": 4.75,
+      "papersUsed": 69,
+      "refillEvents": 0,
+      "avgServiceTime": 3.45
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 8420.276,
+      "message": "job7 begins service at printer2, printing 19 pages in about 3800ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 50,
+      "status": "serving",
+      "currentJobId": 7
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 43,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 9607.744,
+      "message": "job4 departs from printer1, service time = 6000.210ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 5,
+      "jobsReceived": 20,
+      "queueLength": 13,
+      "avgCompletionTime": 5.56,
+      "papersUsed": 99,
+      "refillEvents": 0,
+      "avgServiceTime": 3.96
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 9607.998,
+      "message": "job8 leaves queue, time in queue = 7972.493ms, queue_length = 12"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 9,
+        "papersRequired": 18
+      },
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 5,
+      "jobsReceived": 20,
+      "queueLength": 12,
+      "avgCompletionTime": 5.56,
+      "papersUsed": 99,
+      "refillEvents": 0,
+      "avgServiceTime": 3.96
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 9608.126,
+      "message": "job8 begins service at printer1, printing 18 pages in about 3600ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 43,
+      "status": "serving",
+      "currentJobId": 8
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 48,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 11414.231,
+      "message": "job6 departs from printer3, service time = 6005.115ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 6,
+      "jobsReceived": 20,
+      "queueLength": 12,
+      "avgCompletionTime": 6.33,
+      "papersUsed": 129,
+      "refillEvents": 0,
+      "avgServiceTime": 4.30
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 11414.307,
+      "message": "job9 leaves queue, time in queue = 9576.312ms, queue_length = 11"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 10,
+        "papersRequired": 11
+      },
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 6,
+      "jobsReceived": 20,
+      "queueLength": 11,
+      "avgCompletionTime": 6.33,
+      "papersUsed": 129,
+      "refillEvents": 0,
+      "avgServiceTime": 4.30
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 11414.332,
+      "message": "job9 begins service at printer3, printing 18 pages in about 3600ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 48,
+      "status": "serving",
+      "currentJobId": 9
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 31,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 12223.950,
+      "message": "job7 departs from printer2, service time = 3803.674ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 7,
+      "jobsReceived": 20,
+      "queueLength": 11,
+      "avgCompletionTime": 6.97,
+      "papersUsed": 148,
+      "refillEvents": 0,
+      "avgServiceTime": 4.23
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 12224.104,
+      "message": "job10 leaves queue, time in queue = 10183.026ms, queue_length = 10"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 11,
+        "papersRequired": 16
+      },
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 7,
+      "jobsReceived": 20,
+      "queueLength": 10,
+      "avgCompletionTime": 6.97,
+      "papersUsed": 148,
+      "refillEvents": 0,
+      "avgServiceTime": 4.23
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 12224.164,
+      "message": "job10 begins service at printer2, printing 11 pages in about 2200ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 31,
+      "status": "serving",
+      "currentJobId": 10
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 25,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 13213.201,
+      "message": "job8 departs from printer1, service time = 3605.075ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 8,
+      "jobsReceived": 20,
+      "queueLength": 10,
+      "avgCompletionTime": 7.54,
+      "papersUsed": 166,
+      "refillEvents": 0,
+      "avgServiceTime": 4.15
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 13213.300,
+      "message": "job11 leaves queue, time in queue = 10966.871ms, queue_length = 9"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 12,
+        "papersRequired": 12
+      },
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 8,
+      "jobsReceived": 20,
+      "queueLength": 9,
+      "avgCompletionTime": 7.54,
+      "papersUsed": 166,
+      "refillEvents": 0,
+      "avgServiceTime": 4.15
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 13213.335,
+      "message": "job11 begins service at printer1, printing 16 pages in about 3200ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 25,
+      "status": "serving",
+      "currentJobId": 11
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 20,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 14424.262,
+      "message": "job10 departs from printer2, service time = 2200.098ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 9,
+      "jobsReceived": 20,
+      "queueLength": 9,
+      "avgCompletionTime": 8.08,
+      "papersUsed": 177,
+      "refillEvents": 0,
+      "avgServiceTime": 3.94
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 14424.387,
+      "message": "job12 leaves queue, time in queue = 11974.054ms, queue_length = 8"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 13,
+        "papersRequired": 10
+      },
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 9,
+      "jobsReceived": 20,
+      "queueLength": 8,
+      "avgCompletionTime": 8.08,
+      "papersUsed": 177,
+      "refillEvents": 0,
+      "avgServiceTime": 3.94
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 14424.442,
+      "message": "job12 begins service at printer2, printing 12 pages in about 2400ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 20,
+      "status": "serving",
+      "currentJobId": 12
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 30,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 15019.398,
+      "message": "job9 departs from printer3, service time = 3605.066ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 10,
+      "jobsReceived": 20,
+      "queueLength": 8,
+      "avgCompletionTime": 8.59,
+      "papersUsed": 195,
+      "refillEvents": 0,
+      "avgServiceTime": 3.90
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 15019.528,
+      "message": "job13 leaves queue, time in queue = 12355.716ms, queue_length = 7"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 14,
+        "papersRequired": 30
+      },
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 10,
+      "jobsReceived": 20,
+      "queueLength": 7,
+      "avgCompletionTime": 8.59,
+      "papersUsed": 195,
+      "refillEvents": 0,
+      "avgServiceTime": 3.90
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 15019.562,
+      "message": "job13 begins service at printer3, printing 10 pages in about 2000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 30,
+      "status": "serving",
+      "currentJobId": 13
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 9,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 16415.634,
+      "message": "job11 departs from printer1, service time = 3202.299ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 11,
+      "jobsReceived": 20,
+      "queueLength": 7,
+      "avgCompletionTime": 9.10,
+      "papersUsed": 211,
+      "refillEvents": 0,
+      "avgServiceTime": 3.84
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 16415.747,
+      "message": "printer1 does not have enough paper for job14 and is requesting refill"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 9,
+      "status": "waiting_refill",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 16415.781,
+      "message": "printer1 starts refilling 81 papers, estimated time = 3240.000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 8,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 16827.011,
+      "message": "job12 departs from printer2, service time = 2402.569ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 12,
+      "jobsReceived": 20,
+      "queueLength": 7,
+      "avgCompletionTime": 9.54,
+      "papersUsed": 223,
+      "refillEvents": 0,
+      "avgServiceTime": 3.72
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 16827.103,
+      "message": "printer2 does not have enough paper for job14 and is requesting refill"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 8,
+      "status": "waiting_refill",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 20,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 17024.610,
+      "message": "job13 departs from printer3, service time = 2005.048ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 13,
+      "jobsReceived": 20,
+      "queueLength": 7,
+      "avgCompletionTime": 9.91,
+      "papersUsed": 233,
+      "refillEvents": 0,
+      "avgServiceTime": 3.59
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 17024.699,
+      "message": "printer3 does not have enough paper for job14 and is requesting refill"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 20,
+      "status": "waiting_refill",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 19659.356,
+      "message": "printer1 finishes refilling, actual time = 3243.575ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 13,
+      "jobsReceived": 20,
+      "queueLength": 7,
+      "avgCompletionTime": 9.91,
+      "papersUsed": 233,
+      "refillEvents": 1,
+      "avgServiceTime": 3.59
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 19659.399,
+      "message": "printer2 starts refilling 82 papers, estimated time = 3280.000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 19659.414,
+      "message": "job14 leaves queue, time in queue = 16789.924ms, queue_length = 6"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 15,
+        "papersRequired": 10
+      },
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 13,
+      "jobsReceived": 20,
+      "queueLength": 6,
+      "avgCompletionTime": 9.91,
+      "papersUsed": 233,
+      "refillEvents": 1,
+      "avgServiceTime": 3.59
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 19659.424,
+      "message": "job14 begins service at printer1, printing 30 pages in about 6000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 14
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 22944.437,
+      "message": "printer2 finishes refilling, actual time = 3285.038ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 13,
+      "jobsReceived": 20,
+      "queueLength": 6,
+      "avgCompletionTime": 9.91,
+      "papersUsed": 233,
+      "refillEvents": 2,
+      "avgServiceTime": 3.59
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 22944.473,
+      "message": "printer3 starts refilling 70 papers, estimated time = 2800.000ms"
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 22944.477,
+      "message": "job15 leaves queue, time in queue = 19869.893ms, queue_length = 5"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 16,
+        "papersRequired": 15
+      },
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 13,
+      "jobsReceived": 20,
+      "queueLength": 5,
+      "avgCompletionTime": 9.91,
+      "papersUsed": 233,
+      "refillEvents": 2,
+      "avgServiceTime": 3.59
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 22944.496,
+      "message": "job15 begins service at printer2, printing 10 pages in about 2000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 15
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 80,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 24949.542,
+      "message": "job15 departs from printer2, service time = 2005.046ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 14,
+      "jobsReceived": 20,
+      "queueLength": 5,
+      "avgCompletionTime": 10.76,
+      "papersUsed": 243,
+      "refillEvents": 2,
+      "avgServiceTime": 3.47
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 24949.622,
+      "message": "job16 leaves queue, time in queue = 21671.982ms, queue_length = 4"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 17,
+        "papersRequired": 26
+      },
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 14,
+      "jobsReceived": 20,
+      "queueLength": 4,
+      "avgCompletionTime": 10.76,
+      "papersUsed": 243,
+      "refillEvents": 2,
+      "avgServiceTime": 3.47
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 24949.647,
+      "message": "job16 begins service at printer2, printing 15 pages in about 3000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 80,
+      "status": "serving",
+      "currentJobId": 16
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 60,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25664.498,
+      "message": "job14 departs from printer1, service time = 6005.074ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 15,
+      "jobsReceived": 20,
+      "queueLength": 4,
+      "avgCompletionTime": 11.57,
+      "papersUsed": 273,
+      "refillEvents": 2,
+      "avgServiceTime": 3.64
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25664.589,
+      "message": "job17 leaves queue, time in queue = 22182.619ms, queue_length = 3"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 18,
+        "papersRequired": 14
+      },
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 15,
+      "jobsReceived": 20,
+      "queueLength": 3,
+      "avgCompletionTime": 11.57,
+      "papersUsed": 273,
+      "refillEvents": 2,
+      "avgServiceTime": 3.64
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25664.610,
+      "message": "job17 begins service at printer1, printing 26 pages in about 5200ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 60,
+      "status": "serving",
+      "currentJobId": 17
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25744.825,
+      "message": "printer3 finishes refilling, actual time = 2800.352ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 15,
+      "jobsReceived": 20,
+      "queueLength": 3,
+      "avgCompletionTime": 11.57,
+      "papersUsed": 273,
+      "refillEvents": 3,
+      "avgServiceTime": 3.64
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 90,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25744.901,
+      "message": "job18 leaves queue, time in queue = 22059.078ms, queue_length = 2"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 19,
+        "papersRequired": 14
+      },
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 15,
+      "jobsReceived": 20,
+      "queueLength": 2,
+      "avgCompletionTime": 11.57,
+      "papersUsed": 273,
+      "refillEvents": 3,
+      "avgServiceTime": 3.64
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 25744.917,
+      "message": "job18 begins service at printer3, printing 14 pages in about 2800ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 90,
+      "status": "serving",
+      "currentJobId": 18
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 65,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 27950.287,
+      "message": "job16 departs from printer2, service time = 3000.640ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 16,
+      "jobsReceived": 20,
+      "queueLength": 2,
+      "avgCompletionTime": 12.38,
+      "papersUsed": 288,
+      "refillEvents": 3,
+      "avgServiceTime": 3.60
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 27950.366,
+      "message": "job19 leaves queue, time in queue = 24059.379ms, queue_length = 1"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": [
+      {
+        "id": 20,
+        "papersRequired": 20
+      }
+    ]
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 16,
+      "jobsReceived": 20,
+      "queueLength": 1,
+      "avgCompletionTime": 12.38,
+      "papersUsed": 288,
+      "refillEvents": 3,
+      "avgServiceTime": 3.60
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 27950.390,
+      "message": "job19 begins service at printer2, printing 14 pages in about 2800ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 65,
+      "status": "serving",
+      "currentJobId": 19
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 76,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 28549.969,
+      "message": "job18 departs from printer3, service time = 2805.052ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 17,
+      "jobsReceived": 20,
+      "queueLength": 1,
+      "avgCompletionTime": 13.12,
+      "papersUsed": 302,
+      "refillEvents": 3,
+      "avgServiceTime": 3.56
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 28550.072,
+      "message": "job20 leaves queue, time in queue = 24455.863ms, queue_length = 0"
+    }
+  },
+  {
+    "type": "jobs_update",
+    "data": []
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 17,
+      "jobsReceived": 20,
+      "queueLength": 0,
+      "avgCompletionTime": 13.12,
+      "papersUsed": 302,
+      "refillEvents": 3,
+      "avgServiceTime": 3.56
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 28550.132,
+      "message": "job20 begins service at printer3, printing 20 pages in about 4000ms"
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 76,
+      "status": "serving",
+      "currentJobId": 20
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 2,
+      "papersLeft": 51,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 30755.446,
+      "message": "job19 departs from printer2, service time = 2805.056ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 18,
+      "jobsReceived": 20,
+      "queueLength": 0,
+      "avgCompletionTime": 13.88,
+      "papersUsed": 316,
+      "refillEvents": 3,
+      "avgServiceTime": 3.51
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 1,
+      "papersLeft": 34,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 30868.960,
+      "message": "job17 departs from printer1, service time = 5204.350ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 19,
+      "jobsReceived": 20,
+      "queueLength": 0,
+      "avgCompletionTime": 14.59,
+      "papersUsed": 342,
+      "refillEvents": 3,
+      "avgServiceTime": 3.60
+    }
+  },
+  {
+    "type": "consumer_update",
+    "data": {
+      "id": 3,
+      "papersLeft": 56,
+      "status": "idle",
+      "currentJobId": null
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 32553.835,
+      "message": "job20 departs from printer3, service time = 4003.703ms"
+    }
+  },
+  {
+    "type": "stats_update",
+    "data": {
+      "jobsProcessed": 20,
+      "jobsReceived": 20,
+      "queueLength": 0,
+      "avgCompletionTime": 15.29,
+      "papersUsed": 362,
+      "refillEvents": 3,
+      "avgServiceTime": 3.62
+    }
+  },
+  {
+    "type": "log",
+    "data": {
+      "timestamp": 32554.242,
+      "message": "simulation ends, duration = 32554.242ms"
+    }
+  },
+  {
+    "type": "simulation_complete",
+    "data": {
+      "duration": 32554.242
+    }
+  },
+  {
+    "type": "statistics",
+    "data": {
+      "simulation_duration_sec": 32.6,
+      "total_jobs_arrived": 20,
+      "total_jobs_served": 20,
+      "total_jobs_dropped": 0,
+      "total_jobs_removed": 0,
+      "job_arrival_rate_per_sec": 0.614,
+      "job_drop_probability": 0,
+      "avg_inter_arrival_time_sec": 0.215,
+      "avg_system_time_sec": 15.3,
+      "system_time_std_dev_sec": 0,
+      "avg_queue_wait_time_sec": 11.7,
+      "avg_queue_length": 7.17,
+      "max_queue_length": 14,
+      "printers": [
+        {
+          "id": 1,
+          "jobs_served": 6,
+          "paper_used": 137,
+          "avg_service_time_sec": 4.57,
+          "utilization": 0.842
+        },
+        {
+          "id": 2,
+          "jobs_served": 8,
+          "paper_used": 121,
+          "avg_service_time_sec": 3.03,
+          "utilization": 0.744
+        },
+        {
+          "id": 3,
+          "jobs_served": 6,
+          "paper_used": 104,
+          "avg_service_time_sec": 3.47,
+          "utilization": 0.64
+        }
+      ],
+      "paper_refill_events": 3,
+      "total_refill_service_time_sec": 9.33,
+      "papers_refilled": 233
+    }
+  }
+]

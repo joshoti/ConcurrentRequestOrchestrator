@@ -7,7 +7,7 @@ export const EVENT_LOG_MAX_SIZE = 50;
 export const TIMER_UPDATE_INTERVAL = 10; // ms
 
 // Mock data for queue and consumers (will be replaced with WebSocket data)
-export const MOCK_JOBS = [
+export const DUMMY_JOBS = [
   { id: 1, papersRequired: 20 },
   { id: 2, papersRequired: 15 },
   { id: 3, papersRequired: 25 },
@@ -20,7 +20,7 @@ export const MOCK_JOBS = [
   { id: 10, papersRequired: 24 },
 ];
 
-export const MOCK_CONSUMERS = [
+export const DUMMY_CONSUMERS = [
   { id: 1, papersLeft: 120, status: 'serving' as const, currentJobId: 3 },
   { id: 2, papersLeft: 95, status: 'waiting_refill' as const },
   { id: 3, papersLeft: 105, status: 'serving' as const, currentJobId: 5 },
@@ -28,7 +28,7 @@ export const MOCK_CONSUMERS = [
   { id: 5, papersLeft: 80, status: 'serving' as const, currentJobId: 7 },
 ];
 
-export const MOCK_EVENTS = [
+export const DUMMY_EVENTS = [
   { timestamp: 0, message: 'simulation begins' },
   { timestamp: 604.898, message: 'job1 arrives, needs 12 papers, inter-arrival time = 604.898ms' },
   { timestamp: 604.919, message: 'job1 enters queue, queue length = 1' },

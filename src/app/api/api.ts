@@ -144,7 +144,7 @@ export interface SimulationEvent {
 export class SimulationWebSocket {
   private socket: WebSocket | null = null;
   private reconnectAttempts = 0;
-  private maxReconnectAttempts = 5;
+  private maxReconnectAttempts = 1;
   private reconnectDelay = 2000;
   
   // Event handlers
@@ -247,7 +247,7 @@ export class SimulationWebSocket {
           }
           
           // Attempt reconnection
-          this.attemptReconnect(config);
+          // this.attemptReconnect(config);
         };
       } catch (error) {
         reject(error);
