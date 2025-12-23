@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Title, Stack, Text, Group } from '@mantine/core';
+import { Box, Title, Stack, Text } from '@mantine/core';
 import { LogEvent } from '../../../api/api';
 
 interface EventLogsPanelProps {

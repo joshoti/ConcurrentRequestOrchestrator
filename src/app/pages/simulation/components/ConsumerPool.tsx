@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Paper, Title, Stack, Group, Box, Text } from '@mantine/core';
+import { Paper, Title, Group, Box, Text } from '@mantine/core';
 import '../Simulation.css';
 
 export type ConsumerStatus = 'serving' | 'waiting_refill' | 'idle';

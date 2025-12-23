@@ -31,11 +31,13 @@ const Simulation: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   const [events, setEvents] = useState<LogEvent[]>(MOCK_EVENTS);
   const [stats, setStats] = useState<SimulationStats>({
-    totalJobsProcessed: 0,
-    activeConsumers: 0,
+    jobsProcessed: 0,
+    jobsReceived: 0,
     queueLength: 0,
-    avgJobCompletionTime: 0,
-    failedJobs: 0,
+    avgCompletionTime: 0,
+    papersUsed: 0,
+    refillEvents: 0,
+    avgServiceTime: 0,
   });
   
   const [jobs, setJobs] = useState<JobUpdate[]>(MOCK_JOBS);

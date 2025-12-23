@@ -15,10 +15,10 @@ export const SimulationStatsDisplay: React.FC<SimulationStatsDisplayProps> = ({ 
       
       <Grid gutter="xl" justify="center">
         <Grid.Col span="auto">
-          <StatItem label="Jobs processed" value={stats.totalJobsProcessed} />
+          <StatItem label="Jobs processed" value={stats.jobsProcessed} />
         </Grid.Col>
         <Grid.Col span="auto">
-          <StatItem label="Jobs received" value={stats.totalJobsProcessed + stats.queueLength} />
+          <StatItem label="Jobs received" value={stats.jobsReceived} />
         </Grid.Col>
         <Grid.Col span="auto">
           <StatItem 
@@ -30,18 +30,18 @@ export const SimulationStatsDisplay: React.FC<SimulationStatsDisplayProps> = ({ 
         <Grid.Col span="auto">
           <StatItem 
             label="Avg completion (s)" 
-            value={stats.avgJobCompletionTime.toFixed(2)} 
-            isDanger={stats.avgJobCompletionTime > STATS_THRESHOLDS.AVG_COMPLETION_DANGER} 
+            value={(stats.avgCompletionTime / 1000).toFixed(2)} 
+            isDanger={stats.avgCompletionTime > STATS_THRESHOLDS.AVG_COMPLETION_DANGER * 1000} 
           />
         </Grid.Col>
         <Grid.Col span="auto">
-          <StatItem label="Papers used" value={0} />
+          <StatItem label="Papers used" value={stats.papersUsed} />
         </Grid.Col>
         <Grid.Col span="auto">
-          <StatItem label="Refill events" value={0} />
+          <StatItem label="Refill events" value={stats.refillEvents} />
         </Grid.Col>
         <Grid.Col span="auto">
-          <StatItem label="Avg service (s)" value={`${stats.avgJobCompletionTime.toFixed(2)}`} />
+          <StatItem label="Avg service (s)" value={`${(stats.avgServiceTime / 1000).toFixed(2)}`} />
         </Grid.Col>
       </Grid>
     </Paper>

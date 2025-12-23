@@ -1,16 +1,12 @@
 import React from 'react';
-import { Paper, Title, Stack, Group, Box, Text } from '@mantine/core';
+import { Paper, Title, Group, Box, Text } from '@mantine/core';
 import QueueHeadArrow from '../../../assets/images/queue-head.png'
 import { Image } from '@mantine/core';
+import { JobUpdate } from '../../../api/api';
 import '../Simulation.css';
 
-interface Job {
-  id: number;
-  pages: number;
-}
-
 interface QueueDisplayProps {
-  jobs: Job[];
+  jobs: JobUpdate[];
 }
 
 export const QueueDisplay: React.FC<QueueDisplayProps> = ({ jobs }) => {
@@ -47,7 +43,7 @@ export const QueueDisplay: React.FC<QueueDisplayProps> = ({ jobs }) => {
               }}
             >
               <Text fw={700} size="sm" c="gray.9" mb={10}>Job{job.id}</Text>
-              <Text size="xs" c="gray.6">{job.pages}<br />pages</Text>
+              <Text size="xs" c="gray.6">{job.papersRequired}<br />pages</Text>
             </Box>
           ))
         )}

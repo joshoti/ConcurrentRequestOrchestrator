@@ -78,16 +78,38 @@ export interface ConsumerUpdate {
 // Job update - controls QueueDisplay
 export interface JobUpdate {
   id: number;
-  pages: number;
+  papersRequired: number;
 }
 
 // Stats update - controls SimulationStatsDisplay
 export interface SimulationStats {
-  totalJobsProcessed: number;
-  activeConsumers: number;
+  jobsProcessed: number;
+  jobsReceived: number;
   queueLength: number;
-  avgJobCompletionTime: number;
-  failedJobs: number;
+  avgCompletionTime: number;
+  papersUsed: number;
+  refillEvents: number;
+  avgServiceTime: number;
+}
+
+// Final statistics report
+export interface FinalStatistics {
+  total_jobs_generated: number;
+  total_jobs_completed: number;
+  total_jobs_dropped: number;
+  avg_turnaround_time: number;
+  avg_service_time: number;
+  avg_queue_wait_time: number;
+  total_papers_used: number;
+  total_refill_events: number;
+  printers_used: {
+    [key: string]: {
+      jobs_served: number;
+      papers_used: number;
+      total_service_time: number;
+      refill_count: number;
+    };
+  };
 }
 
 // WebSocket message types from backend
@@ -99,7 +121,9 @@ export type WebSocketMessage =
   | { type: 'jobs_update'; data: JobUpdate[] } // Full queue state (jobs waiting in queue only)
   | { type: 'stats_update'; data: SimulationStats }
   | { type: 'simulation_started'; data: { timestamp: number } }
-  | { type: 'simulation_complete'; data: { duration: number } };
+  | { type: 'simulation_complete'; data: { duration: number } }
+  | { type: 'statistics'; data: FinalStatistics }
+  | { type: 'params'; params: any }; // Configuration parameters from backend
 
 // Legacy export for backwards compatibility
 export interface SimulationEvent {
@@ -140,7 +164,7 @@ export class SimulationWebSocket {
           this.reconnectAttempts = 0;
           
           // Send config to start simulation
-          this.send({ type: 'start', config });
+          this.send({ command: 'start', config });
           
           if (this.onConnectedCallback) {
             this.onConnectedCallback();
@@ -240,14 +264,14 @@ export class SimulationWebSocket {
    * Pause simulation
    */
   pause() {
-    this.send({ type: 'pause' });
+    this.send({ command: 'pause' });
   }
 
   /**
    * Resume simulation
    */
   resume() {
-    this.send({ type: 'resume' });
+    this.send({ command: 'resume' });
   }
 
   /**
@@ -255,7 +279,7 @@ export class SimulationWebSocket {
    */
   disconnect() {
     if (this.socket) {
-      this.send({ type: 'stop' });
+      this.send({ command: 'stop' });
       this.socket.close();
       this.socket = null;
     }

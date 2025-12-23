@@ -8,16 +8,16 @@ export const TIMER_UPDATE_INTERVAL = 10; // ms
 
 // Mock data for queue and consumers (will be replaced with WebSocket data)
 export const MOCK_JOBS = [
-  { id: 1, pages: 20 },
-  { id: 2, pages: 15 },
-  { id: 3, pages: 25 },
-  { id: 4, pages: 18 },
-  { id: 5, pages: 22 },
-  { id: 6, pages: 30 },
-  { id: 7, pages: 12 },
-  { id: 8, pages: 28 },
-  { id: 9, pages: 16 },
-  { id: 10, pages: 24 },
+  { id: 1, papersRequired: 20 },
+  { id: 2, papersRequired: 15 },
+  { id: 3, papersRequired: 25 },
+  { id: 4, papersRequired: 18 },
+  { id: 5, papersRequired: 22 },
+  { id: 6, papersRequired: 30 },
+  { id: 7, papersRequired: 12 },
+  { id: 8, papersRequired: 28 },
+  { id: 9, papersRequired: 16 },
+  { id: 10, papersRequired: 24 },
 ];
 
 export const MOCK_CONSUMERS = [
