@@ -11,7 +11,7 @@ const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8000/ws';
  * Fetch configuration and ranges from backend
  * Falls back to frontend defaults if backend is unavailable
  */
-export const fetchConfigAndRanges = async (): Promise<{ config: SimulationConfigState; ranges: ValidationRanges }> => {
+export const fetchConfigAndRanges = async (): Promise<{ config: SimulationConfigState; ranges: ValidationRanges; isBackendConnected: boolean }> => {
   try {
     const response = await fetch(`${API_BASE_URL}/config`, {
       method: 'GET',
@@ -28,14 +28,16 @@ export const fetchConfigAndRanges = async (): Promise<{ config: SimulationConfig
 
     return {
       config: data.config || DEFAULTS,
-      ranges: data.ranges || RANGES
+      ranges: data.ranges || RANGES,
+      isBackendConnected: true
     };
   } catch (error) {
     console.warn('Failed to fetch config from backend, using frontend defaults:', error);
     // Fallback to frontend defaults
     return {
       config: DEFAULTS,
-      ranges: RANGES
+      ranges: RANGES,
+      isBackendConnected: false
     };
   }
 };

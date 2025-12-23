@@ -19,11 +19,24 @@ import { EventLogsPanel } from './components/EventLogsPanel';
 import { QueueDisplay } from './components/QueueDisplay';
 import { ConsumerPool } from './components/ConsumerPool';
 import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL } from './constants';
+import mockEventsData from './mock-events.json';
+
+// Type for WebSocket messages
+type WebSocketMessage =
+  | { type: 'log'; data: LogEvent }
+  | { type: 'consumer_update'; data: ConsumerUpdate }
+  | { type: 'consumers_update'; data: ConsumerUpdate[] }
+  | { type: 'job_update'; data: JobUpdate }
+  | { type: 'jobs_update'; data: JobUpdate[] }
+  | { type: 'stats_update'; data: SimulationStats }
+  | { type: 'simulation_started'; data: { timestamp: number } }
+  | { type: 'simulation_complete'; data: { duration: number } }
+  | { type: 'statistics'; data: any };
 
 const Simulation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { config: contextConfig } = useConfig();
+  const { config: contextConfig, isBackendConnected } = useConfig();
   
   // Get config from navigation state or fallback to context
   const config = (location.state as { config?: SimulationConfigState })?.config || contextConfig;
@@ -55,8 +68,16 @@ const Simulation: React.FC = () => {
     return () => clearInterval(timer);
   }, [isTimerRunning]);
 
-  // Setup WebSocket connection
+  // Setup WebSocket connection or mock simulation
   useEffect(() => {
+    // If backend is not connected, use mock events
+    if (!isBackendConnected) {
+      console.log('Backend offline - using mock events');
+      setIsConnected(false);
+      playMockSimulation();
+      return;
+    }
+
     const setupWebSocket = async () => {
       // Register event handlers
       simulationWS.onConnected(() => {
@@ -118,6 +139,10 @@ const Simulation: React.FC = () => {
 
       simulationWS.onError((error) => {
         console.error('WebSocket error:', error);
+        // If WebSocket fails, fallback to mock
+        console.log('WebSocket failed - falling back to mock events');
+        setIsConnected(false);
+        playMockSimulation();
       });
 
       // Connect and start simulation
@@ -125,6 +150,10 @@ const Simulation: React.FC = () => {
         await simulationWS.connect(config);
       } catch (error) {
         console.error('Failed to connect:', error);
+        // Fallback to mock simulation
+        console.log('Connection failed - using mock events');
+        setIsConnected(false);
+        playMockSimulation();
       }
     };
 
@@ -134,13 +163,86 @@ const Simulation: React.FC = () => {
     return () => {
       simulationWS.disconnect();
     };
-  }, [config]);
+  }, [config, isBackendConnected, navigate]);
+
+  // Play mock simulation using pre-recorded events
+  const playMockSimulation = useCallback(() => {
+    const events = mockEventsData as WebSocketMessage[];
+    let eventIndex = 0;
+    let lastTimestamp = 0;
+
+    const processNextEvent = () => {
+      if (eventIndex >= events.length) {
+        console.log('Mock simulation complete');
+        return;
+      }
+
+      const event = events[eventIndex];
+      eventIndex++;
+
+      // Calculate delay based on timestamp difference
+      const currentTimestamp = (event.type === 'log' && 'data' in event) 
+        ? (event.data as LogEvent).timestamp 
+        : ('data' in event && 'timestamp' in event.data) 
+          ? (event.data as any).timestamp 
+          : lastTimestamp;
+      
+      const delay = currentTimestamp - lastTimestamp;
+      lastTimestamp = currentTimestamp;
+
+      // Process event based on type
+      switch (event.type) {
+        case 'log':
+          setEvents(prev => [...prev, event.data]);
+          break;
+        case 'consumer_update':
+          setConsumers(prev => {
+            const exists = prev.find(c => c.id === event.data.id);
+            if (exists) {
+              return prev.map(c => c.id === event.data.id ? event.data : c);
+            } else {
+              return [...prev, event.data];
+            }
+          });
+          break;
+        case 'consumers_update':
+          setConsumers(event.data);
+          break;
+        case 'job_update':
+          setJobs(prev => [...prev, event.data]);
+          break;
+        case 'jobs_update':
+          setJobs(event.data);
+          break;
+        case 'stats_update':
+          setStats(event.data);
+          break;
+        case 'simulation_complete':
+          setIsTimerRunning(false);
+          break;
+        case 'statistics':
+          // Navigate to report with dummy data
+          navigate('/report', { state: { statistics: null } });
+          return;
+      }
+
+      // Schedule next event (speed up by dividing delay)
+      setTimeout(processNextEvent, Math.max(1, delay / 2));
+    };
+
+    processNextEvent();
+  }, [navigate]);
 
   const handleStop = useCallback(() => {
-    // Send stop command to backend
-    // Backend will send final statistics, which triggers navigation to report page
-    simulationWS.stop();
-  }, []);
+    if (isBackendConnected) {
+      // Send stop command to backend
+      // Backend will send final statistics, which triggers navigation to report page
+      simulationWS.stop();
+    } else {
+      // In mock mode, navigate directly to report with dummy data
+      navigate('/report', { state: { statistics: null } });
+    }
+  }, [isBackendConnected, navigate]);
 
   return (
     <Box style={{ display: 'flex', flexDirection: 'row', height: '100vh', backgroundColor: '#f8f9fa', overflow: 'hidden' }}>

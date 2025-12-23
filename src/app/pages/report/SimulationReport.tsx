@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Title, Box, Group, Button } from '@mantine/core';
 import { ReportSection } from './components/ReportSection';
-import { REPORT_DATA } from './data';
+import { DUMMY_REPORT_DATA } from './data';
 import { ReportSectionData } from './types';
 import WatchImg from '../../assets/images/patek.webp';
 import ConsumerImg from '../../assets/images/consumer-picture.jpg';
@@ -48,7 +48,7 @@ const SimulationReport: React.FC = () => {
   const reportData = useMemo((): ReportSectionData[] => {
     if (!statistics) {
       // Use dummy data if no statistics provided
-      return REPORT_DATA;
+      return DUMMY_REPORT_DATA;
     }
 
     // System Timing Section

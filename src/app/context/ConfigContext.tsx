@@ -8,6 +8,7 @@ interface ConfigContextType {
   setConfig: (config: SimulationConfigState) => void;
   ranges: ValidationRanges;
   isLoading: boolean;
+  isBackendConnected: boolean;
   refreshConfig: () => Promise<void>;
 }
 
@@ -17,13 +18,15 @@ export const ConfigProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [config, setConfig] = useState<SimulationConfigState>(DEFAULTS);
   const [ranges, setRanges] = useState<ValidationRanges>(RANGES);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
 
   const refreshConfig = async () => {
     setIsLoading(true);
     try {
-      const { config: fetchedConfig, ranges: fetchedRanges } = await fetchConfigAndRanges();
+      const { config: fetchedConfig, ranges: fetchedRanges, isBackendConnected: connected } = await fetchConfigAndRanges();
       
       setConfig(fetchedConfig);
+      setIsBackendConnected(connected);
       
       // Use backend ranges if available, otherwise use frontend RANGES
       if (fetchedRanges) {
@@ -33,6 +36,7 @@ export const ConfigProvider: React.FC<{ children: ReactNode }> = ({ children }) 
       console.error("Failed to fetch config", err);
       setConfig(DEFAULTS);
       setRanges(RANGES);
+      setIsBackendConnected(false);
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +47,7 @@ export const ConfigProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   }, []);
 
   return (
-    <ConfigContext.Provider value={{ config, setConfig, ranges, isLoading, refreshConfig }}>
+    <ConfigContext.Provider value={{ config, setConfig, ranges, isLoading, isBackendConnected, refreshConfig }}>
       {children}
     </ConfigContext.Provider>
   );
