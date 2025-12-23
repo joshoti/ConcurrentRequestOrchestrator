@@ -6,7 +6,8 @@ import {
   LogEvent,
   ConsumerUpdate,
   JobUpdate,
-  SimulationStats 
+  SimulationStats,
+  FinalStatistics
 } from '../../api/api';
 import { SimulationConfigState } from '../config/types';
 import { useConfig } from '../../context/ConfigContext';
@@ -17,7 +18,7 @@ import { SimulationStatsDisplay } from './components/SimulationStatsDisplay';
 import { EventLogsPanel } from './components/EventLogsPanel';
 import { QueueDisplay } from './components/QueueDisplay';
 import { ConsumerPool } from './components/ConsumerPool';
-import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL, MOCK_JOBS, MOCK_CONSUMERS, MOCK_EVENTS } from './constants';
+import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL } from './constants';
 
 const Simulation: React.FC = () => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const Simulation: React.FC = () => {
   
   const [isConnected, setIsConnected] = useState(false);
   const [time, setTime] = useState<number>(0);
-  const [events, setEvents] = useState<LogEvent[]>(MOCK_EVENTS);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const [events, setEvents] = useState<LogEvent[]>([]);
   const [stats, setStats] = useState<SimulationStats>({
     jobsProcessed: 0,
     jobsReceived: 0,
@@ -40,16 +42,18 @@ const Simulation: React.FC = () => {
     avgServiceTime: 0,
   });
   
-  const [jobs, setJobs] = useState<JobUpdate[]>(MOCK_JOBS);
-  const [consumers, setConsumers] = useState<ConsumerUpdate[]>(MOCK_CONSUMERS);
+  const [jobs, setJobs] = useState<JobUpdate[]>([]);
+  const [consumers, setConsumers] = useState<ConsumerUpdate[]>([]);
 
   // Timer effect
   useEffect(() => {
+    if (!isTimerRunning) return;
+    
     const timer = setInterval(() => {
       setTime(prev => prev + 0.01);
     }, TIMER_UPDATE_INTERVAL);
     return () => clearInterval(timer);
-  }, []);
+  }, [isTimerRunning]);
 
   // Setup WebSocket connection
   useEffect(() => {
@@ -67,14 +71,25 @@ const Simulation: React.FC = () => {
 
       // Register handlers for different message types
       simulationWS.onLog((log: LogEvent) => {
-        setEvents(prev => [...prev, log].slice(-EVENT_LOG_MAX_SIZE));
+        setEvents(prev => [...prev, log]);
+        // setEvents(prev => [...prev, log].slice(-EVENT_LOG_MAX_SIZE));
       });
 
       simulationWS.onConsumerUpdate((consumer: ConsumerUpdate) => {
-        setConsumers(prev => prev.map(c => c.id === consumer.id ? consumer : c));
+        setConsumers(prev => {
+          const exists = prev.find(c => c.id === consumer.id);
+          if (exists) {
+            // Update existing consumer (status change, paper refill, etc.)
+            return prev.map(c => c.id === consumer.id ? consumer : c);
+          } else {
+            // Add new consumer (scaling up)
+            return [...prev, consumer];
+          }
+        });
       });
 
       simulationWS.onConsumersUpdate((consumers: ConsumerUpdate[]) => {
+        // Replace entire consumer list (used for scaling down or full state sync)
         setConsumers(consumers);
       });
 
@@ -88,6 +103,17 @@ const Simulation: React.FC = () => {
 
       simulationWS.onStats((newStats: SimulationStats) => {
         setStats(newStats);
+      });
+
+      simulationWS.onSimulationComplete((data) => {
+        console.log('Simulation complete:', data);
+        setIsTimerRunning(false);
+      });
+
+      simulationWS.onStatistics((finalStats: FinalStatistics) => {
+        console.log('Final statistics received:', finalStats);
+        // Navigate to report page with statistics
+        navigate('/report', { state: { statistics: finalStats } });
       });
 
       simulationWS.onError((error) => {

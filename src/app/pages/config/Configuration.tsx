@@ -26,7 +26,7 @@ import { ConfigBottomBar } from './components/ConfigBottomBar';
 
 const SimulationConfig: React.FC = () => {
   const navigate = useNavigate();
-  const { config: contextConfig, setConfig: setContextConfig, isLoading: contextLoading } = useConfig();
+  const { config: contextConfig, setConfig: setContextConfig, ranges, isLoading: contextLoading } = useConfig();
   
   // State
   const [values, setValues] = useState<SimulationConfigState>(contextConfig);
@@ -78,7 +78,7 @@ const SimulationConfig: React.FC = () => {
       }
     } else {
       // Standard range validation for other numeric fields
-      const range = RANGES[field];
+      const range = ranges[field];
       if (range && typeof val === 'number') {
         const { min, max } = range;
         if (val < min || (max !== -1 && val > max)) {

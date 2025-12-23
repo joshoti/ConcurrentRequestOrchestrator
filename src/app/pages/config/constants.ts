@@ -9,7 +9,7 @@ export const DEFAULTS: SimulationConfigState = {
   paperCapacity: 150,
   // Producers
   jobArrivalTime: 500,
-  jobCount: 10,
+  jobCount: 20,
   fixedArrival: true,
   minArrivalTime: 300,
   maxArrivalTime: 600,

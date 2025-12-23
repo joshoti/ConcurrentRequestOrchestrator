@@ -1,17 +1,17 @@
-import { SimulationConfigState } from '../pages/config/types';
-import { DEFAULTS } from '../pages/config/constants';
+import { SimulationConfigState, ValidationRanges } from '../pages/config/types';
+import { DEFAULTS, RANGES } from '../pages/config/constants';
 
 // API Configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
-const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8080/websocket';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const WS_BASE_URL = process.env.REACT_APP_WS_URL || 'ws://localhost:8000/ws';
 
 // ==================== HTTP API ====================
 
 /**
- * Fetch default configuration from backend
+ * Fetch configuration and ranges from backend
  * Falls back to frontend defaults if backend is unavailable
  */
-export const fetchConfig = async (): Promise<SimulationConfigState> => {
+export const fetchConfigAndRanges = async (): Promise<{ config: SimulationConfigState; ranges: ValidationRanges }> => {
   try {
     const response = await fetch(`${API_BASE_URL}/config`, {
       method: 'GET',
@@ -25,11 +25,18 @@ export const fetchConfig = async (): Promise<SimulationConfigState> => {
     }
 
     const data = await response.json();
-    return data as SimulationConfigState;
+
+    return {
+      config: data.config || DEFAULTS,
+      ranges: data.ranges || RANGES
+    };
   } catch (error) {
     console.warn('Failed to fetch config from backend, using frontend defaults:', error);
     // Fallback to frontend defaults
-    return DEFAULTS;
+    return {
+      config: DEFAULTS,
+      ranges: RANGES
+    };
   }
 };
 
@@ -145,6 +152,10 @@ export class SimulationWebSocket {
   private onConsumerUpdateCallback?: (consumer: ConsumerUpdate) => void;
   private onConsumersUpdateCallback?: (consumers: ConsumerUpdate[]) => void;
   private onJobUpdateCallback?: (job: JobUpdate) => void;
+  private onSimulationStartedCallback?: (data: { timestamp: number }) => void;
+  private onSimulationCompleteCallback?: (data: { duration: number }) => void;
+  private onStatisticsCallback?: (stats: FinalStatistics) => void;
+  private onParamsCallback?: (params: any) => void;
   private onJobsUpdateCallback?: (jobs: JobUpdate[]) => void;
   private onStatsCallback?: (stats: SimulationStats) => void;
   private onConnectedCallback?: () => void;
@@ -157,7 +168,7 @@ export class SimulationWebSocket {
   connect(config: SimulationConfigState): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        this.socket = new WebSocket(`${WS_BASE_URL}/simulate`);
+        this.socket = new WebSocket(`${WS_BASE_URL}/simulation`);
 
         this.socket.onopen = () => {
           console.log('WebSocket connected');
@@ -175,6 +186,7 @@ export class SimulationWebSocket {
         this.socket.onmessage = (event) => {
           try {
             const message: WebSocketMessage = JSON.parse(event.data);
+            console.log('Received (raw):', event.data);
             
             // Route messages to appropriate handlers
             switch (message.type) {
@@ -198,9 +210,19 @@ export class SimulationWebSocket {
                 break;
               case 'simulation_started':
                 console.log('Simulation started:', message.data);
+                if (this.onSimulationStartedCallback) this.onSimulationStartedCallback(message.data);
                 break;
               case 'simulation_complete':
                 console.log('Simulation completed:', message.data);
+                if (this.onSimulationCompleteCallback) this.onSimulationCompleteCallback(message.data);
+                break;
+              case 'statistics':
+                console.log('Final statistics:', message.data);
+                if (this.onStatisticsCallback) this.onStatisticsCallback(message.data);
+                break;
+              case 'params':
+                console.log('Simulation params:', (message as any).params);
+                if (this.onParamsCallback) this.onParamsCallback((message as any).params);
                 break;
               default:
                 console.warn('Unknown message type:', message);
@@ -311,6 +333,34 @@ export class SimulationWebSocket {
    */
   onJobUpdate(callback: (job: JobUpdate) => void) {
     this.onJobUpdateCallback = callback;
+  }
+
+  /**
+   * Register handler for simulation started event
+   */
+  onSimulationStarted(callback: (data: { timestamp: number }) => void) {
+    this.onSimulationStartedCallback = callback;
+  }
+
+  /**
+   * Register handler for simulation complete event
+   */
+  onSimulationComplete(callback: (data: { duration: number }) => void) {
+    this.onSimulationCompleteCallback = callback;
+  }
+
+  /**
+   * Register handler for final statistics
+   */
+  onStatistics(callback: (stats: FinalStatistics) => void) {
+    this.onStatisticsCallback = callback;
+  }
+
+  /**
+   * Register handler for simulation parameters
+   */
+  onParams(callback: (params: any) => void) {
+    this.onParamsCallback = callback;
   }
 
   /**

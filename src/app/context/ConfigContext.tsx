@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { SimulationConfigState } from '../pages/config/types';
-import { DEFAULTS } from '../pages/config/constants';
-import { fetchConfig } from '../api/api';
+import { SimulationConfigState, ValidationRanges } from '../pages/config/types';
+import { DEFAULTS, RANGES } from '../pages/config/constants';
+import { fetchConfigAndRanges } from '../api/api';
 
 interface ConfigContextType {
   config: SimulationConfigState;
   setConfig: (config: SimulationConfigState) => void;
+  ranges: ValidationRanges;
   isLoading: boolean;
   refreshConfig: () => Promise<void>;
 }
@@ -14,16 +15,24 @@ const ConfigContext = createContext<ConfigContextType | undefined>(undefined);
 
 export const ConfigProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [config, setConfig] = useState<SimulationConfigState>(DEFAULTS);
+  const [ranges, setRanges] = useState<ValidationRanges>(RANGES);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const refreshConfig = async () => {
     setIsLoading(true);
     try {
-      const fetchedConfig = await fetchConfig();
+      const { config: fetchedConfig, ranges: fetchedRanges } = await fetchConfigAndRanges();
+      
       setConfig(fetchedConfig);
+      
+      // Use backend ranges if available, otherwise use frontend RANGES
+      if (fetchedRanges) {
+        setRanges(fetchedRanges);
+      }
     } catch (err) {
       console.error("Failed to fetch config", err);
       setConfig(DEFAULTS);
+      setRanges(RANGES);
     } finally {
       setIsLoading(false);
     }
@@ -34,7 +43,7 @@ export const ConfigProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   }, []);
 
   return (
-    <ConfigContext.Provider value={{ config, setConfig, isLoading, refreshConfig }}>
+    <ConfigContext.Provider value={{ config, setConfig, ranges, isLoading, refreshConfig }}>
       {children}
     </ConfigContext.Provider>
   );
