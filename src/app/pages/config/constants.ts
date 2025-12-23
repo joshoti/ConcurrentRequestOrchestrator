@@ -4,7 +4,7 @@ export const DEFAULTS: SimulationConfigState = {
   // Consumers
   printRate: 5,
   consumerCount: 2,
-  autoScaling: false,
+  autoScaling: true,
   refillRate: 25,
   paperCapacity: 150,
   // Producers
