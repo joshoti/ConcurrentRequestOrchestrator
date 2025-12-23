@@ -137,9 +137,10 @@ const Simulation: React.FC = () => {
   }, [config]);
 
   const handleStop = useCallback(() => {
-    simulationWS.disconnect();
-    navigate('/configuration');
-  }, [navigate]);
+    // Send stop command to backend
+    // Backend will send final statistics, which triggers navigation to report page
+    simulationWS.stop();
+  }, []);
 
   return (
     <Box style={{ display: 'flex', flexDirection: 'row', height: '100vh', backgroundColor: '#f8f9fa', overflow: 'hidden' }}>

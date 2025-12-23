@@ -297,11 +297,17 @@ export class SimulationWebSocket {
   }
 
   /**
-   * Stop simulation and disconnect
+   * Stop simulation (backend will send final statistics)
+   */
+  stop() {
+    this.send({ command: 'stop' });
+  }
+
+  /**
+   * Disconnect WebSocket connection
    */
   disconnect() {
     if (this.socket) {
-      this.send({ command: 'stop' });
       this.socket.close();
       this.socket = null;
     }
