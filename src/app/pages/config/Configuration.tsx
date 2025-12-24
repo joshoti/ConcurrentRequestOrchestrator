@@ -14,7 +14,7 @@ import {
   UndoCache, 
   FieldUndoCache 
 } from './types';
-import { DEFAULTS, RANGES } from './constants';
+import { DEFAULTS } from './constants';
 import { useConfig } from '../../context/ConfigContext';
 
 // Import components

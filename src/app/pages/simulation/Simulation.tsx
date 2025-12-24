@@ -18,7 +18,7 @@ import { SimulationStatsDisplay } from './components/SimulationStatsDisplay';
 import { EventLogsPanel } from './components/EventLogsPanel';
 import { QueueDisplay } from './components/QueueDisplay';
 import { ConsumerPool } from './components/ConsumerPool';
-import { EVENT_LOG_MAX_SIZE, TIMER_UPDATE_INTERVAL } from './constants';
+import { TIMER_UPDATE_INTERVAL } from './constants';
 import mockEventsData from './mock-events.json';
 
 // Type for WebSocket messages
@@ -67,6 +67,74 @@ const Simulation: React.FC = () => {
     }, TIMER_UPDATE_INTERVAL);
     return () => clearInterval(timer);
   }, [isTimerRunning]);
+
+  // Play mock simulation using pre-recorded events
+  const playMockSimulation = useCallback(() => {
+    const events = mockEventsData as WebSocketMessage[];
+    let eventIndex = 0;
+    let lastTimestamp = 0;
+
+    const processNextEvent = () => {
+      if (eventIndex >= events.length) {
+        console.log('Mock simulation complete');
+        return;
+      }
+
+      const event = events[eventIndex];
+      eventIndex++;
+
+      // Calculate delay based on timestamp difference
+      const currentTimestamp = (event.type === 'log' && 'data' in event) 
+        ? (event.data as LogEvent).timestamp 
+        : ('data' in event && 'timestamp' in event.data) 
+          ? (event.data as any).timestamp 
+          : lastTimestamp;
+      
+      const delay = currentTimestamp - lastTimestamp;
+      lastTimestamp = currentTimestamp;
+
+      // Process event based on type
+      switch (event.type) {
+        case 'log':
+          setEvents(prev => [...prev, event.data]);
+          break;
+        case 'consumer_update':
+          setConsumers(prev => {
+            const exists = prev.find(c => c.id === event.data.id);
+            if (exists) {
+              return prev.map(c => c.id === event.data.id ? event.data : c);
+            } else {
+              return [...prev, event.data];
+            }
+          });
+          break;
+        case 'consumers_update':
+          setConsumers(event.data);
+          break;
+        case 'job_update':
+          setJobs(prev => [...prev, event.data]);
+          break;
+        case 'jobs_update':
+          setJobs(event.data);
+          break;
+        case 'stats_update':
+          setStats(event.data);
+          break;
+        case 'simulation_complete':
+          setIsTimerRunning(false);
+          break;
+        case 'statistics':
+          // Navigate to report with dummy data
+          navigate('/report', { state: { statistics: null } });
+          return;
+      }
+
+      // Schedule next event (speed up by dividing delay)
+      setTimeout(processNextEvent, Math.max(1, delay / 2));
+    };
+
+    processNextEvent();
+  }, [navigate]);
 
   // Setup WebSocket connection or mock simulation
   useEffect(() => {
@@ -163,75 +231,7 @@ const Simulation: React.FC = () => {
     return () => {
       simulationWS.disconnect();
     };
-  }, [config, isBackendConnected, navigate]);
-
-  // Play mock simulation using pre-recorded events
-  const playMockSimulation = useCallback(() => {
-    const events = mockEventsData as WebSocketMessage[];
-    let eventIndex = 0;
-    let lastTimestamp = 0;
-
-    const processNextEvent = () => {
-      if (eventIndex >= events.length) {
-        console.log('Mock simulation complete');
-        return;
-      }
-
-      const event = events[eventIndex];
-      eventIndex++;
-
-      // Calculate delay based on timestamp difference
-      const currentTimestamp = (event.type === 'log' && 'data' in event) 
-        ? (event.data as LogEvent).timestamp 
-        : ('data' in event && 'timestamp' in event.data) 
-          ? (event.data as any).timestamp 
-          : lastTimestamp;
-      
-      const delay = currentTimestamp - lastTimestamp;
-      lastTimestamp = currentTimestamp;
-
-      // Process event based on type
-      switch (event.type) {
-        case 'log':
-          setEvents(prev => [...prev, event.data]);
-          break;
-        case 'consumer_update':
-          setConsumers(prev => {
-            const exists = prev.find(c => c.id === event.data.id);
-            if (exists) {
-              return prev.map(c => c.id === event.data.id ? event.data : c);
-            } else {
-              return [...prev, event.data];
-            }
-          });
-          break;
-        case 'consumers_update':
-          setConsumers(event.data);
-          break;
-        case 'job_update':
-          setJobs(prev => [...prev, event.data]);
-          break;
-        case 'jobs_update':
-          setJobs(event.data);
-          break;
-        case 'stats_update':
-          setStats(event.data);
-          break;
-        case 'simulation_complete':
-          setIsTimerRunning(false);
-          break;
-        case 'statistics':
-          // Navigate to report with dummy data
-          navigate('/report', { state: { statistics: null } });
-          return;
-      }
-
-      // Schedule next event (speed up by dividing delay)
-      setTimeout(processNextEvent, Math.max(1, delay / 2));
-    };
-
-    processNextEvent();
-  }, [navigate]);
+  }, [config, isBackendConnected, navigate, playMockSimulation]);
 
   const handleStop = useCallback(() => {
     if (isBackendConnected) {
