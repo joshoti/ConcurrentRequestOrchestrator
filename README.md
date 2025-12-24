@@ -2,6 +2,9 @@
 
 A real-time simulation platform for visualizing multithreaded resource orchestration and concurrency control. This project demonstrates a producer-consumer pattern with multiple producers, consumers, and finite shared resources (modeled as a print service).
 
+## 🔗 Live Demo
+[View live application](https://concurrent-request-orchestrator.vercel.app/)
+
 ## 🎯 Overview
 
 The Concurrent Request Orchestrator provides an interactive web interface to:
