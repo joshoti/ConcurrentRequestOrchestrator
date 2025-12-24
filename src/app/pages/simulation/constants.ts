@@ -5,6 +5,7 @@ export const STATS_THRESHOLDS = {
 
 export const EVENT_LOG_MAX_SIZE = 50;
 export const TIMER_UPDATE_INTERVAL = 10; // ms
+export const QUEUE_LENGTH = 7; // Number of jobs to display in queue
 
 // Mock data for queue and consumers (will be replaced with WebSocket data)
 export const DUMMY_JOBS = [

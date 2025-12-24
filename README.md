@@ -1,49 +1,137 @@
-# ConcurrentRequestOrchestrator
-This project is a simulation of a multithreaded resource orchestrator (modeled as a print service) to visualize traffic and concurrency control. It implements a multi-stage producer-consumer pattern involving multiple producers, multiple consumers, and the management of shared, finite resources.
+# Concurrent Request Orchestrator
 
-# Getting Started with Create React App
+A real-time simulation platform for visualizing multithreaded resource orchestration and concurrency control. This project demonstrates a producer-consumer pattern with multiple producers, consumers, and finite shared resources (modeled as a print service).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🎯 Overview
 
-## Available Scripts
+The Concurrent Request Orchestrator provides an interactive web interface to:
+- Configure and run concurrent processing simulations
+- Visualize real-time job queuing, processing, and completion
+- Monitor resource utilization and consumer scaling
+- Analyze performance metrics and statistics
+- Test different concurrency patterns and configurations
 
-In the project directory, you can run:
+## 🏗️ Architecture
 
-### `npm start`
+- **Frontend**: React + TypeScript SPA with real-time WebSocket updates
+- **Backend**: C-based multithreaded request orchestrator with WebSocket + REST API server
+- **Deployment**: Multi-container Docker setup with nginx reverse proxy
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🚀 Quick Start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js 16+ and npm
+- Docker and Docker Compose (optional, for containerized deployment)
+- `serve` package for production serving: `npm install -g serve`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Setup Options
 
-### `npm run build`
+The project includes a flexible setup script that supports three deployment modes:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+chmod +x setup.sh
+./setup.sh [mode]
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Mode 1: Frontend Only (Mock Data)
+```bash
+./setup.sh frontend-only
+```
+- Builds and serves the React frontend
+- Uses pre-recorded mock events for simulation
+- No backend required
+- Ideal for UI development and testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Mode 2: Local Frontend + Docker Backend
+```bash
+./setup.sh local-frontend
+```
+- Builds and serves the React frontend locally
+- Starts backend in Docker container
+- Real-time WebSocket communication
+- Best for full-stack development
 
-### `npm run eject`
+#### Mode 3: Full Docker Deployment
+```bash
+./setup.sh docker-all
+```
+- Runs both frontend and backend in Docker containers
+- Production-like environment
+- Ideal for integration testing and deployment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Note**: If Docker is not installed or running, the script automatically falls back to frontend-only mode.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Manual Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Frontend Development
+```bash
+npm install
+npm start
+# Open http://localhost:3000
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Production Build
+```bash
+npm run build
+serve -s build
+```
 
-## Learn More
+#### Docker Build
+```bash
+# Build frontend image
+docker build -t joshoti/orchestrator-frontend:latest .
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Run with docker-compose
+export DOCKERHUB_USERNAME=joshoti
+docker-compose up -d
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎮 Usage
+
+1. **Configure Simulation**: Set producers, consumers, queue size, and resource limits
+2. **Start Simulation**: Launch the simulation to see real-time processing
+3. **Monitor Progress**: Watch jobs flow through the queue and get processed
+4. **View Report**: Analyze final statistics including throughput, latency, and resource usage
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+## 🛠️ Technologies
+
+- **React 19** - UI framework
+- **TypeScript** - Type-safe development
+- **Mantine UI** - Component library
+- **React Router** - Client-side routing
+- **WebSocket** - Real-time communication
+- **Docker** - Containerization
+- **Nginx** - Web server and reverse proxy
+
+## 🚢 Deployment
+
+### Docker Hub
+The project uses automated CI/CD to build and push Docker images:
+- Frontend: `joshoti/orchestrator-frontend:latest`
+- Backend: `joshoti/request-orchestrator:latest`
+
+### GitHub Actions
+The `.github/workflows/docker-frontend.yml` workflow automatically:
+- Builds multi-platform images (linux/amd64, linux/arm64)
+- Pushes to Docker Hub on commits to main
+- Creates versioned tags for releases
+
+### Environment Variables
+Configure the following environment variables:
+- `REACT_APP_API_URL`: Backend API endpoint (default: `http://localhost:8000/api`)
+- `REACT_APP_WS_URL`: WebSocket endpoint (default: `ws://localhost:8000/ws`)
+
+## 🤝 Contributing
+
+This is a personal project, but suggestions and improvements are welcome!

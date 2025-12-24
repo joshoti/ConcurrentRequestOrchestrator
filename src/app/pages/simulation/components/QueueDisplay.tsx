@@ -3,6 +3,7 @@ import { Paper, Title, Group, Box, Text } from '@mantine/core';
 import QueueHeadArrow from '../../../assets/images/queue-head.png'
 import { Image } from '@mantine/core';
 import { JobUpdate } from '../../../api/api';
+import { QUEUE_LENGTH } from '../constants';
 import '../Simulation.css';
 
 interface QueueDisplayProps {
@@ -10,7 +11,7 @@ interface QueueDisplayProps {
 }
 
 export const QueueDisplay: React.FC<QueueDisplayProps> = ({ jobs }) => {
-  const displayJobs = jobs.slice(0, 8).reverse(); // Show first 8 jobs
+  const displayJobs = jobs.slice(0, QUEUE_LENGTH).reverse(); // Show first {QUEUE_LENGTH} jobs
 
   return (
     <Paper shadow="sm" radius="lg" className="simulation-card" style={{ height: '100%' }}>
