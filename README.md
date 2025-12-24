@@ -138,3 +138,8 @@ Configure the following environment variables:
 ## 🤝 Contributing
 
 This is a personal project, but suggestions and improvements are welcome!
+
+## 🎨 Attribution
+
+- [Server](https://www.freepik.com/free-vector/network-servers-isolated_4658640.htm#fromView=keyword&page=1&position=1&uuid=1d4e5a0b-5112-45f3-93c2-8dc61437f6a3&query=Isolated+server) image designed by [macrovector_official/Freepik](https://www.freepik.com)
+- [Spanner](https://pngimg.com/image/103090) & [Gear](https://pngimg.com/image/109864) images downloaded from [pngimg](https://pngimg.com/)
